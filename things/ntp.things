@@ -1,0 +1,1 @@
+ntp:ntp:ntp_demo  [ hostname="bg.pool.ntp.org", refreshInterval=60, refreshNtp=30 ]

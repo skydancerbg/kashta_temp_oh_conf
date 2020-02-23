@@ -1,0 +1,30 @@
+
+// Number: ElectricPotential OU_V "Voltage [% .2f V]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: volt: V: number"}
+Number Voltage    "Voltage  [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:volt:V:number" }
+
+
+
+// Number OU_kWh "Energy meter status [% .2f kWh]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: kWh: kWh: number"}
+// Number: Power OU_P "Instantaneous power [% d W]" <line> (OU_Counters, gCounters) {channel = "modbus: data: localSerial: power: P: number"}
+// Number: ElectricPotential OU_V "Voltage [% .2f V]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: volt: V: number"}
+// Number: ElectricCurrent OU_A "Current [% .2f A]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: ampery: A: number"}
+// Number: Frequency OU_Hz "Frequency [% .2f Hz]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: Hz: Hz: number"}
+// Number OU_fimocy "Power factor" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: fimocy: fimocy: number"}
+// Number: Power OU_biernaP "Instantaneous reactive power [% d var]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: biernapower: passiveP: number"}
+// Number: Power OU_pozornaP "Instantaneous apparent power [% d VA]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: pozornapower: pozornaP: number"}
+// Number OU_biernakWh "Meter readout reactive energy [% .2f kvar]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: biernakWh: biernakWh: number"}
+
+
+
+
+
+// Number Thermostat1_OnOff    "Thermostat1_On/Off [%d]"  <switch>                { channel="modbus:data:thermostat_slave1:thermostat_slave1_holding:thermostat_slave1_onoff:number" }
+// Number Thermostat1_temp    "Thermostat1_Temperature [%.1f]"  <temperature>          { channel="modbus:data:thermostat_slave1:thermostat_slave1_holding:thermostat_slave1_temperature:number" }
+// // Number Thermostat1_temp1    "Thermostat1_Temperature testing  [%.1f]"  <temperature>          { channel="modbus:data:thermostat_slave1:thermostat_slave1_holding:thermostat_slave1_temperature:number" }
+// Number Thermostat1_ManualAuto    "Thermostat1_Manual/Auto [%d]"  <temperature>      { channel="modbus:data:thermostat_slave1:thermostat_slave1_holding:thermostat_slave1_ManualAuto:number" }
+// Number Thermostat1_HeatingOnOff   "Tthermostat Heating ON/OFF [%d]"  <temperature>  { channel="modbus:data:thermostat_slave1:thermostat_slave1_holding:thermostat_slave1_HeatingOnOff:number" }
+// Number Thermostat1_Set_Temp    "Thermostat1_SET_Temperature [%.1f]"  <temperature>  { channel="modbus:data:thermostat_slave1:thermostat_slave1_holding:thermostat_slave1_set_temperature:number" }
+// Number Thermostat1_Weekly_Mod_Set_Temp    "Thermostat1_Weekly_Mod_Set_Temp [%.1f]"  <temperature>  { channel="modbus:data:thermostat_slave1:thermostat_slave1_holding:thermostat_slave1_weekly_mod_set_temperature:number" }
+// Number Thermostat1_LockUnlock   "Tthermostat Lock/Unlock [%d]"  <temperature>  { channel="modbus:data:thermostat_slave1:thermostat_slave1_holding:thermostat_slave1_LockUnlock:number" }
+
+// // Number Thermostat1_temp    "Thermostat1_Temperature [%.1f]"  <temperature>  { channel="modbus:data:slave1:holding:holding4002:number", autoupdate="false" }

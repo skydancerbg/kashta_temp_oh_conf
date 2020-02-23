@@ -1,0 +1,2 @@
+DateTime Date  "Date [%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"  { channel="ntp:ntp:ntp_demo:dateTime" }
+DateTime DateDiffFormat "Date & Time [%1$tm.%1$td.%1$tY %1$tr]" <calendar> { channel="ntp:ntp:ntp_demo:dateTime" }
