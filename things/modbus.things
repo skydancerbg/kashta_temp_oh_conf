@@ -115,11 +115,12 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
                 // 03	Function code	0x03 (3) - Read Holding Registers
                 // 01 31	Starting address	0x0132 (306)
                 // 00 01	Quantity	0x0001 (1)
-                // DC 2E	CRC	0xDC2E (56366)                
-        Bridge poller volt [start = 306, length = 1, refresh = 10000, type = "holding"]
+                // DC 2E	CRC	0xDC2E (56366)
+        //! Holding rgister 306 - bacuse it is zero based in the binding we read 305 =(306-1)                        
+        Bridge poller volt [start = 305, length = 1, refresh = 10000, type = "holding"]
         // Bridge poller volt [start = 306, length = 1, refresh = 10000, type = "holding"]
         {
-            Thing data V [readStart = "306", readValueType = "uint16", readTransform = "JS (divide100.js)"]
+            Thing data V [readStart = "305", readValueType = "uint16", readTransform = "JS(divide100.js)"]
             // Thing data V [readStart = "306", readValueType = "uint16", readTransform = "JS (divide100.js)"]
         }
                 // Part of Data Package	Description	Value
@@ -128,10 +129,10 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
                 // 01 39	Starting address	0x013A (314)
                 // 00 02	Quantity	0x0002 (2)
                 // 1D ED	CRC	0x1DED (7661)
-        // Bridge poller ampery [start = 313, length = 2, refresh = 10000, type = "holding"]
-        // {
-        //     Thing data A [readStart = "313", readValueType = "uint32", readTransform = "JS (divide1000.js)"]    
-        // }
+        Bridge poller ampers [start = 313, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data A [readStart = "313", readValueType = "uint32", readTransform = "JS(divide1000.js)"]    
+        }
                 // Active power
                 // Part of Data Package	Description	Value
                 // 66	Slave address	0x66 (102)
@@ -139,10 +140,10 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
                 // 01 40	Starting address	0x0141 (321)
                 // 00 02	Quantity	0x0002 (2)
                 // CC 34	CRC	0xCC34 (52276)
-        // Bridge poller power [start = 320, length = 2, refresh = 10000, type = "holding"]
-        // {
-        //     Thing data P [readStart = "320", readValueType = "uint32"]  
-        // }
+        Bridge poller power [start = 320, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data P [readStart = "320", readValueType = "uint32"]  
+        }
                 // Reactive power 
                 // Part of Data Package	Description	Value
                 // 66	Slave address	0x66 (102)

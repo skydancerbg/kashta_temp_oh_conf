@@ -2,6 +2,8 @@ sitemap default label="My home automation" {
     Frame label="Temperature" {
         Text item=Date label="Livingroom"
         Text item=DateDiffFormat label="Livingroo"
-        Text item=Voltage label="Livingroo"
+        Text item=Voltage label="VOLTAGE"
+        Text item=Ampers label="Ampers"
+        Text item=Power label="Power Watts"
     }
 }

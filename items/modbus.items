@@ -1,6 +1,8 @@
 
 // Number: ElectricPotential OU_V "Voltage [% .2f V]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: volt: V: number"}
 Number Voltage    "Voltage  [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:volt:V:number" }
+Number Ampers     "Ampers   [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:ampers:A:number" }
+Number Power      "Ampers   [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:power:P:number" }
 
 
 
