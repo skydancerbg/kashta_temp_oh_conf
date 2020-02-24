@@ -5,5 +5,15 @@ sitemap default label="My home automation" {
         Text item=Voltage label="VOLTAGE"
         Text item=Ampers label="Ampers"
         Text item=Power label="Power Watts"
+        Text item=TotalKWh label="TotalKWh"
+        Text item=TotalKWhT1 label="TotalKWh T1"
+        Text item=TotalKWhT2 label="TotalKWh T2"
+        Text item=TotalKWhT3 label="TotalKWh T3"
+        Text item=TotalKWhT4 label="TotalKWh T4"
+        Text item=Totalkvarh label="Totalkvarh"
+        Text item=TotalkvarhT1 label="Totalkvarh T1"
+        Text item=TotalkvarhT2 label="Totalkvarh T2"
+        Text item=TotalkvarhT3 label="Totalkvarh T3"
+        Text item=TotalkvarhT4 label="Totalkvarh T4"
     }
 }

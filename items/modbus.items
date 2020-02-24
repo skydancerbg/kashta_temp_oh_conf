@@ -3,6 +3,16 @@
 Number Voltage    "Voltage  [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:volt:V:number" }
 Number Ampers     "Ampers   [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:ampers:A:number" }
 Number Power      "Ampers   [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:power:P:number" }
+Number TotalKWh   "totalkwh   [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:totalkwh:totalkwh:number" }
+Number TotalKWhT1   "totalkwhT1   [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:totalkwh:totalkwhT1:number" }
+Number TotalKWhT2   "totalkwhT2   [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:totalkwh:totalkwhT2:number" }
+Number TotalKWhT3   "totalkwhT3   [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:totalkwh:totalkwhT3:number" }
+Number TotalKWhT4   "totalkwhT4   [%.2f]"  <temperature>          { channel="modbus:data:energy_metters_slave102:totalkwh:totalkwhT4:number" }
+Number Totalkvarh   "totalkwh   [%.2f]"  <temperature>                  { channel="modbus:data:energy_metters_slave102:totalkvarh:totalkvarh:number" }
+Number TotalkvarhT1   "totalkvarhT1   [%.2f]"  <temperature>            { channel="modbus:data:energy_metters_slave102:totalkvarh:totalkvarhT1:number" }
+Number TotalkvarhT2   "totalkvarhT2   [%.2f]"  <temperature>            { channel="modbus:data:energy_metters_slave102:totalkvarh:totalkvarhT2:number" }
+Number TotalkvarhT3   "totalkvarhT3   [%.2f]"  <temperature>            { channel="modbus:data:energy_metters_slave102:totalkvarh:totalkvarhT3:number" }
+Number TotalkvarhT4   "totalkvarhT4   [%.2f]"  <temperature>            { channel="modbus:data:energy_metters_slave102:totalkvarh:totalkvarhT4:number" }
 
 
 
