@@ -1,0 +1,25 @@
+rule "Init virtual Items" 
+when System started 
+then logInfo("home.rules","System started")
+logInfo("system_started", "testtttttttttt")
+      // if not yet initialized or restored
+         TotalCostWaterHeater.postUpdate(0.0)   // send a default value
+
+//    Alarm_Detected.sendCommand(OFF) //??????????? алармата се нулира!!!!!!!!!!
+//    AT_BR_Heating_Enable.sendCommand(ON)
+//    AT_KN_Heating_Enable.sendCommand(ON)
+//    Gr_Sequrity_System_Motion.sendCommand(OFF)
+//    if (Group_SetPoint_Command.state == NULL) {
+//       // if not yet initialized or restored
+//          Group_SetPoint_Command.postUpdate(1.0)   // send a default value
+//    }
+//    if (AT_BR_Heating_Setpoint.state == NULL) {
+//       // if not yet initialized or restored
+//          AT_KN_Heating_Setpoint.postUpdate(1.0)   // send a default value
+//    }
+//    if (AT_KN_Heating_Setpoint.state == NULL) {
+//       // if not yet initialized or restored
+//          AT_KN_Heating_Setpoint.postUpdate(1.0)   // send a default value
+//    }
+
+end

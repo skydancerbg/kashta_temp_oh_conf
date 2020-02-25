@@ -2,10 +2,15 @@ sitemap default label="My home automation" {
     Frame label="Temperature" {
         Text item=Date label="Livingroom"
         Text item=DateDiffFormat label="Livingroo"
+        Text item=Power label="Power Watts"
         Text item=Voltage label="VOLTAGE"
         Text item=Ampers label="Ampers"
-        Text item=Power label="Power Watts"
+        Text item=Hz label="Line frequency Hz"
+        Text item=Reactive_power label="Reactive_power"
+        Text item=Apparent_power label="Apparent_power"
+        Text item=Power_factor label="Power_factor"
         Text item=TotalKWh label="TotalKWh"
+        Text item=TotalCostWaterHeater label="Total cost in Lev"
         Text item=TotalKWhT1 label="TotalKWh T1"
         Text item=TotalKWhT2 label="TotalKWh T2"
         Text item=TotalKWhT3 label="TotalKWh T3"
@@ -15,5 +20,14 @@ sitemap default label="My home automation" {
         Text item=TotalkvarhT2 label="Totalkvarh T2"
         Text item=TotalkvarhT3 label="Totalkvarh T3"
         Text item=TotalkvarhT4 label="Totalkvarh T4"
+
+        Text item=year_month
+        Text item=date_hour
+        Text item=min_sec
+        Text item=not_defined
+
+        Text item=year_month_tst
+        Text item=date_hour_tst
+
     }
 }

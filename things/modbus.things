@@ -125,11 +125,7 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
                 // 01 30	Starting address	0x0131 (305)
                 // 00 01	Quantity	0x0001 (1)
                 // 8D EE	CRC	0x8DEE (36334)
-        // Bridge poller Hz [start = 304, length = 1, refresh = 10000, type = "holding"]
-        // {
-        //     Thing data Hz [readStart = "304", readValueType = "uint16", readTransform = "JS (divide100.js)"]
-        // }
-                // Part of Data Package	Description	Value
+                 // Part of Data Package	Description	Value
                 // 66	Slave address	0x66 (102)
                 // 03	Function code	0x03 (3) - Read Holding Registers
                 // 01 31	Starting address	0x0132 (306)
@@ -223,6 +219,10 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // 01 30	Starting address	0x0131 (305)
 // 00 01	Quantity	0x0001 (1)
 // 8D EE	CRC	0x8DEE (36334)
+       Bridge poller Hz [start = 304, length = 1, refresh = 10000, type = "holding"]
+        {
+            Thing data Hz [readStart = "304", readValueType = "uint16", readTransform = "JS(divide100.js)"]
+        }
 
 // Voltage:
 // 229.84 V
@@ -281,6 +281,10 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // 01 48	Starting address	0x0149 (329)
 // 00 02	Quantity	0x0002 (2)
 // 4D F6	CRC	0x4DF6 (19958)
+        Bridge poller reactive_power [start = 328, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data rP [readStart = "328", readValueType = "uint32"]  
+        }
 
 // Apparent Power:
 // 0.000 kVA
@@ -290,6 +294,10 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // 01 50	Starting address	0x0151 (337)
 // 00 02	Quantity	0x0002 (2)
 // CD F1	CRC	0xCDF1 (52721)
+        Bridge poller apparent_power [start = 336, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data aP [readStart = "336", readValueType = "uint32"]  
+        }
 
 // Power Factor:
 // 1.000 
@@ -300,7 +308,10 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // 01 58	Starting address	0x0159 (345)
 // 00 01	Quantity	0x0001 (1)
 // 0C 32	CRC	0x0C32 (3122)
-
+        // Bridge poller power_factor [start = 344, length = 1, refresh = 10000, type = "holding"]
+        // {
+        //     Thing data Pf [readStart = "344", readValueType = "uint16", readTransform = "JS(divide1000.js)"]  
+        // }
 
 
 
@@ -349,7 +360,46 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
             Thing data totalkvarhT4 [readStart = "40998", readValueType = "uint32", readTransform = "JS(divide100.js)"]
         }
 
+//Date_Time:
+// Part of Data Package	Description	Value
+// 66	Slave address	0x66 (102)
+// 03	Function code	0x03 (3) - Read Holding Registers
+// 81 20	Starting address	0x8121 (33057)
+// 00 04	Quantity	0x0004 (4)
+// 65 E8	CRC	0x65E8 (26088)
+// Response:
+// 66 03 08 14 02 19 02 35 29 02 00 F6 30 
+// Part of Data Package	Description	Value
+// 66	Slave address	0x66 (102)
+// 03	Function code	0x03 (3) - Read Holding Registers
+// 08	Byte count	0x08 (8)
+// 14 02 19 02 35 29 02 00	Register value	0x1402 (5122), 0x1902 (6402), 0x3529 (13609), 0x0200 (512)
+// F6 30	CRC	0xF630 (63024)
+// Date/Time encoding:
+// 0x1402 (5122)  - year, month - 00-99, 1-12 (word R/W)
+// 0x1902 (6402)  - date, time  - 1-31, 0-23  (word R/W)
+// 0x3529 (13609) - min, second - 0-59, 0-59  (word R/W)
+// 0x0200 (512)   -  not described in the manual ??? do not write? 
+        Bridge poller date_time [start = 33056, length = 4, refresh = 10000, type = "holding"]
+        {
+            Thing data year_month   [readStart = "33056", readValueType = "uint32"]
+            Thing data date_hour [readStart = "33058", readValueType = "uint32"]
+            Thing data min_sec [readStart = "33060", readValueType = "uint32"]
+            Thing data not_defined [readStart = "33062", readValueType = "uint32"]
 
+            // Thing data year_month   [readStart = "33056", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            // Thing data date_hour [readStart = "33058", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            // Thing data min_sec [readStart = "33060", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            // Thing data not_defined [readStart = "33062", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+        } 
+         Bridge poller tst_y_m [start = 33056, length = 1, refresh = 10000, type = "holding"]
+        {
+            Thing data year_month   [readStart = "33056", readValueType = "uint16"]
+        } 
+         Bridge poller tst_d_h [start = 33058, length = 1, refresh = 10000, type = "holding"]
+        {
+            Thing data date_hour   [readStart = "33058", readValueType = "uint16"]
+        } 
 }
 
 /////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!/////////////////////////

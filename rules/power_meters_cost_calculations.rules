@@ -1,0 +1,66 @@
+// import org.openhab.core.library.types.*
+// import java.lang.Math
+
+
+//! TODO check: https://community.openhab.org/t/total-energy-consumed-in-kwh-day-week-mont-year/40092
+
+// ЧЕЗ -смятане на цената за Квч за промишлен ток
+// http://www.cez.bg/bg/za-klienta/bitovi-i-nebitovi-klienti/calculator-konsumacia.html
+
+val Number price_per_KWh = 1.308//lev/KWh
+// val Number price_per_KWh = ‭1.308‬ //lev/KWh
+// val Number price_per_KWh = 0.28 //lev/KWh
+
+// Electricity_Unit_Cost = 0.28 lev/kWh
+// MyDevice1_EnergyUsed_Cost = MyDevice1_Power_Used * Electricity_Unit_Cost
+
+rule "Calculate total cost from the beginning for immersed water heater in solar tank"
+
+when
+    Item TotalKWh received update    
+then
+   if((TotalKWh.state as Number)!= (0.0) && TotalKWh.state != NULL) {
+// if (TotalKWh.state != Uninitialized ){
+		// Temperatur_UG_Flur_komplett.postUpdate("Ist: " + String::format("%.1f", (Temperatur_UG_Flur_IST.state as DecimalType).floatValue()) + " °C , Soll: " + String::format("%.1f", (Temperatur_UG_Flur_Soll.state as DecimalType).floatValue()) + " °C")
+
+   // if((TotalKWh.state as Number)!= (0.0) && TotalKWh.state != NULL) {
+
+    logInfo("power__calc", "mina")
+    // logInfo("power__calc", TotalKWh.state as Number)
+
+
+    // You can’t log a state, you have to use a string for logging:
+    // logInfo("Openhab start ", Openhab_Start.state.toString)
+    // should do the trick.
+    logInfo("power__calc_totalKWh", (TotalKWh.state.toString()))
+    // logInfo("power__calc_totalKWh", (TotalKWh.state as DecimalType).floatValue())
+    // logInfo("power__calc", ((TotalKWh.state as Number/1000)*0.28))
+
+//        val Number e = TotalKWh.state as Number
+//        var Number f = e * e //(e / 1000)*0.28
+// //     logInfo("power__calc", f)   
+// //     TotalCostWaterHeater.Postupdate(f)
+// logInfo("power__calcculated price", TotalKWh.state * kWh_price)
+
+        var Number pwr = TotalKWh.state as DecimalType   
+        var Number xx = pwr*price_per_KWh
+logInfo("power__calc_totalKWh", (xx.toString()))
+
+    TotalCostWaterHeater.postUpdate(xx)
+    // TotalCostWaterHeater.postUpdate(22.33)
+
+    // TotalCostWaterHeater.postUpdate((TotalKWh.state as Number/1000)*0.28)
+
+
+
+// // MeterDayCost.postUpdate((MeterDayUsage.state as DecimalType) * kWh_price)
+
+		}
+	else
+		{
+            logInfo("power__calc", "ne mina!!!")
+		// Temperatur_UG_Flur_komplett.postUpdate("Values not yet read/updated from KNX bus")	
+		}
+ 
+    // }
+end
