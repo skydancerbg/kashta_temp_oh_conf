@@ -1,5 +1,30 @@
 sitemap default label="My home automation" {
-    Frame label="Temperature" {
+
+        Frame label="даtа час ntp" {
+        Text item=Date label="Livingroom"
+        Text item=DateDiffFormat label="Livingroo"
+        }
+
+        Frame label="КОНТРОЛЕР СЕНЗОРИ КОТЕЛНО:" icon="water" {
+
+        Group item=Gr_GF_HR_AM_ET_DIY_Heating_Room_Sensors
+    }
+
+    Frame label="КОНТРОЛЕР УПРАВЛЕНИЕ КОТЕЛНО:" icon="water" {
+
+        Group item=Gr_GF_HR_AM_ET_DIY_Heating_Room_Ctrl
+    }
+
+    Frame label="УПРАВЛЕНИЕ НА СОНДАЖНАТА ПОМПА:" icon="water" {
+
+        Group item=Gr_GF_HR_NU_WF_DIY_Well_Pump_Ctrl
+    }
+
+    Frame label="ТЕМПЕРАТУРИ НА СЛЪНЧЕВИЯ БОЙЛЕР:" icon="Temperature" {
+
+        Group item=Gr_GF_HR_NU_TMP_DIY_SOLAR_TANK_TEMPERATURES
+    }
+    Frame label="Electric meter Hot Water Heater 515 - ID:103" {
         Text item=Date label="Livingroom"
         Text item=DateDiffFormat label="Livingroo"
         Text item=Power label="Power Watts"

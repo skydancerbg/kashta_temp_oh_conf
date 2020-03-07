@@ -60,7 +60,7 @@
 // Communication commands will choose CRC check (2bytes)
 // Meter ID will use 01 as default, baud rate 9600bps, but 1200bps、 2400bps、 4800bps(optional)
 //
-Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=102,stopBits="1.0",parity="even",dataBits=8,encoding="rtu"]
+Bridge modbus:serial:energy_metters_slave103 [port="/dev/ttyUSB0",baud=9600,id=103,stopBits="1.0",parity="even",dataBits=8,encoding="rtu"]
 // Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1,stopBits="1.0",parity="none",dataBits=8,encoding="rtu"]
 // Bridge modbus:serial:energy_metters_slave102 [port="usb-1a86_USB2.0-Serial-if00-port0",baud=9600,id=102,stopBits="1.0",parity="none",dataBits=8,encoding="rtu"]
 // Bridge modbus:serial:energy_metters_slave102 [port="usb-1a86_USB2.0-Serial-if00-port0",baud=9600,id=102,stopBits="1.0",parity="none",dataBits=8,encoding="rtu"]
@@ -382,16 +382,33 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // 0x0200 (512)   -  not described in the manual ??? do not write? 
         Bridge poller date_time [start = 33056, length = 4, refresh = 10000, type = "holding"]
         {
-            Thing data year_month   [readStart = "33056", readValueType = "uint32"]
-            Thing data date_hour [readStart = "33058", readValueType = "uint32"]
-            Thing data min_sec [readStart = "33060", readValueType = "uint32"]
-            Thing data not_defined [readStart = "33062", readValueType = "uint32"]
+            Thing data year_month   [readStart = "33056", readValueType = "uint16"]
+            Thing data date_hour [readStart = "33058", readValueType = "uint16"]
+            Thing data min_sec [readStart = "33060", readValueType = "uint16"]
+            Thing data not_defined [readStart = "33062", readValueType = "uint16"]
 
             // Thing data year_month   [readStart = "33056", readValueType = "uint32", readTransform = "JS(divide100.js)"]
             // Thing data date_hour [readStart = "33058", readValueType = "uint32", readTransform = "JS(divide100.js)"]
             // Thing data min_sec [readStart = "33060", readValueType = "uint32", readTransform = "JS(divide100.js)"]
             // Thing data not_defined [readStart = "33062", readValueType = "uint32", readTransform = "JS(divide100.js)"]
         } 
+// OH type conversion examples...
+// https://community.openhab.org/t/type-conversions/32684
+// //convert integer_number to string containing hex_code
+// var String hex_code = Long.toHexString(integer_number);
+// //convert hex_code to Number type
+// var MyNumber = Integer.parseInt(hex_code, 16) as Number
+// //use the following for large_hex_code
+// var MyNumber = Long.parseLong(hex, 16) as Number
+// // coverting hex_code into DecimalType
+// var DecimalType parsedResult = DecimalType.valueOf(Long.parseLong(hex_code, 16).toString);
+// to convert a hex_code (a number expressed in hexadecimals) to a Number type 
+// val dimVal =  Integer.parseInt(hex_code, 16) as Number
+// //for very large_hex_codes use
+// val dimVal = Long.valueOf(large_hex_code, 16).longValue() as Number
+// https://stackoverflow.com/questions/14666214/extracting-nibbles-from-java-bytes
+// https://www.se.com/ww/en/faqs/FA233789/ ??example??
+
          Bridge poller tst_y_m [start = 33056, length = 1, refresh = 10000, type = "holding"]
         {
             Thing data year_month   [readStart = "33056", readValueType = "uint16"]
