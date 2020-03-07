@@ -380,18 +380,18 @@ Bridge modbus:serial:energy_metters_slave103 [port="/dev/ttyUSB0",baud=9600,id=1
 // 0x1902 (6402)  - date, time  - 1-31, 0-23  (word R/W)
 // 0x3529 (13609) - min, second - 0-59, 0-59  (word R/W)
 // 0x0200 (512)   -  not described in the manual ??? do not write? 
-        Bridge poller date_time [start = 33056, length = 4, refresh = 10000, type = "holding"]
-        {
-            Thing data year_month   [readStart = "33056", readValueType = "uint16"]
-            Thing data date_hour [readStart = "33058", readValueType = "uint16"]
-            Thing data min_sec [readStart = "33060", readValueType = "uint16"]
-            Thing data not_defined [readStart = "33062", readValueType = "uint16"]
+        // Bridge poller date_time [start = 33056, length = 4, refresh = 10000, type = "holding"]
+        // {
+        //     Thing data year_month   [readStart = "33056", readValueType = "uint16"]
+        //     Thing data date_hour [readStart = "33058", readValueType = "uint16"]
+        //     Thing data min_sec [readStart = "33060", readValueType = "uint16"]
+        //     Thing data not_defined [readStart = "33062", readValueType = "uint16"]
 
-            // Thing data year_month   [readStart = "33056", readValueType = "uint32", readTransform = "JS(divide100.js)"]
-            // Thing data date_hour [readStart = "33058", readValueType = "uint32", readTransform = "JS(divide100.js)"]
-            // Thing data min_sec [readStart = "33060", readValueType = "uint32", readTransform = "JS(divide100.js)"]
-            // Thing data not_defined [readStart = "33062", readValueType = "uint32", readTransform = "JS(divide100.js)"]
-        } 
+        //     // Thing data year_month   [readStart = "33056", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+        //     // Thing data date_hour [readStart = "33058", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+        //     // Thing data min_sec [readStart = "33060", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+        //     // Thing data not_defined [readStart = "33062", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+        // } 
 // OH type conversion examples...
 // https://community.openhab.org/t/type-conversions/32684
 // //convert integer_number to string containing hex_code
@@ -409,14 +409,14 @@ Bridge modbus:serial:energy_metters_slave103 [port="/dev/ttyUSB0",baud=9600,id=1
 // https://stackoverflow.com/questions/14666214/extracting-nibbles-from-java-bytes
 // https://www.se.com/ww/en/faqs/FA233789/ ??example??
 
-         Bridge poller tst_y_m [start = 33056, length = 1, refresh = 10000, type = "holding"]
-        {
-            Thing data year_month   [readStart = "33056", readValueType = "uint16"]
-        } 
-         Bridge poller tst_d_h [start = 33058, length = 1, refresh = 10000, type = "holding"]
-        {
-            Thing data date_hour   [readStart = "33058", readValueType = "uint16"]
-        } 
+        //  Bridge poller tst_y_m [start = 33056, length = 1, refresh = 10000, type = "holding"]
+        // {
+        //     Thing data year_month   [readStart = "33056", readValueType = "uint16"]
+        // } 
+        //  Bridge poller tst_d_h [start = 33058, length = 1, refresh = 10000, type = "holding"]
+        // {
+        //     Thing data date_hour   [readStart = "33058", readValueType = "uint16"]
+        // } 
 }
 
 /////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!/////////////////////////
@@ -496,3 +496,149 @@ Bridge modbus:serial:energy_metters_slave103 [port="/dev/ttyUSB0",baud=9600,id=1
 // T2:0.00 kvarh
 // T3:0.00 kvarh
 // T4:0.00 kvarh 
+
+//! SOALR HOT WATER SYSTEM AND HOT WATER RECIRCULATION PUMP ENERGY METER
+Bridge modbus:serial:energy_metters_slave104 [port="/dev/ttyUSB0",baud=9600,id=104,stopBits="1.0",parity="even",dataBits=8,encoding="rtu"]
+{
+// Grid Frequency:
+       Bridge poller Hz [start = 304, length = 1, refresh = 10000, type = "holding"]
+        {
+            Thing data Hz [readStart = "304", readValueType = "uint16", readTransform = "JS(divide100.js)"]
+        }
+
+// Voltage:
+        //! Holding rgister 306 - bacuse it is zero based in the binding we read 305 =(306-1)                        
+        Bridge poller volt [start = 305, length = 1, refresh = 10000, type = "holding"]
+        // Bridge poller volt [start = 306, length = 1, refresh = 10000, type = "holding"]
+        {
+            Thing data V [readStart = "305", readValueType = "uint16", readTransform = "JS(divide100.js)"]
+            // Thing data V [readStart = "306", readValueType = "uint16", readTransform = "JS (divide100.js)"]
+        }
+
+// Current:
+        Bridge poller ampers [start = 313, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data A [readStart = "313", readValueType = "uint32", readTransform = "JS(divide1000.js)"]    
+        }
+
+// Active Power:
+        Bridge poller power [start = 320, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data P [readStart = "320", readValueType = "uint32"]  
+        }
+
+// Reactive Power:
+        Bridge poller reactive_power [start = 328, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data rP [readStart = "328", readValueType = "uint32"]  
+        }
+
+// Apparent Power:
+        Bridge poller apparent_power [start = 336, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data aP [readStart = "336", readValueType = "uint32"]  
+        }
+
+// Power Factor:
+        // Bridge poller power_factor [start = 344, length = 1, refresh = 10000, type = "holding"]
+        // {
+        //     Thing data Pf [readStart = "344", readValueType = "uint16", readTransform = "JS(divide1000.js)"]  
+        // }
+
+
+
+// Active Energy:
+        Bridge poller totalkwh [start = 40960, length = 10, refresh = 10000, type = "holding"]
+        {
+            Thing data totalkwh [readStart = "40960", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkwhT1 [readStart = "40962", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkwhT2 [readStart = "40964", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkwhT3 [readStart = "40966", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkwhT4 [readStart = "40968", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+        }
+
+// Reactive Energy:
+        Bridge poller totalkvarh [start = 40990, length = 10, refresh = 10000, type = "holding"]
+        {
+            Thing data totalkvarh   [readStart = "40990", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkvarhT1 [readStart = "40992", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkvarhT2 [readStart = "40994", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkvarhT3 [readStart = "40996", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkvarhT4 [readStart = "40998", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+        }
+
+
+}
+
+//! WHELL PUMP ENERGY METER
+Bridge modbus:serial:energy_metters_slave105 [port="/dev/ttyUSB0",baud=9600,id=105,stopBits="1.0",parity="even",dataBits=8,encoding="rtu"]
+{
+// Grid Frequency:
+       Bridge poller Hz [start = 304, length = 1, refresh = 10000, type = "holding"]
+        {
+            Thing data Hz [readStart = "304", readValueType = "uint16", readTransform = "JS(divide100.js)"]
+        }
+
+// Voltage:
+        //! Holding rgister 306 - bacuse it is zero based in the binding we read 305 =(306-1)                        
+        Bridge poller volt [start = 305, length = 1, refresh = 10000, type = "holding"]
+        // Bridge poller volt [start = 306, length = 1, refresh = 10000, type = "holding"]
+        {
+            Thing data V [readStart = "305", readValueType = "uint16", readTransform = "JS(divide100.js)"]
+            // Thing data V [readStart = "306", readValueType = "uint16", readTransform = "JS (divide100.js)"]
+        }
+
+// Current:
+        Bridge poller ampers [start = 313, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data A [readStart = "313", readValueType = "uint32", readTransform = "JS(divide1000.js)"]    
+        }
+
+// Active Power:
+        Bridge poller power [start = 320, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data P [readStart = "320", readValueType = "uint32"]  
+        }
+
+// Reactive Power:
+        Bridge poller reactive_power [start = 328, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data rP [readStart = "328", readValueType = "uint32"]  
+        }
+
+// Apparent Power:
+        Bridge poller apparent_power [start = 336, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data aP [readStart = "336", readValueType = "uint32"]  
+        }
+
+// Power Factor:
+        // Bridge poller power_factor [start = 344, length = 1, refresh = 10000, type = "holding"]
+        // {
+        //     Thing data Pf [readStart = "344", readValueType = "uint16", readTransform = "JS(divide1000.js)"]  
+        // }
+
+
+
+// Active Energy:
+        Bridge poller totalkwh [start = 40960, length = 10, refresh = 10000, type = "holding"]
+        {
+            Thing data totalkwh [readStart = "40960", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkwhT1 [readStart = "40962", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkwhT2 [readStart = "40964", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkwhT3 [readStart = "40966", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkwhT4 [readStart = "40968", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+        }
+
+// Reactive Energy:
+        Bridge poller totalkvarh [start = 40990, length = 10, refresh = 10000, type = "holding"]
+        {
+            Thing data totalkvarh   [readStart = "40990", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkvarhT1 [readStart = "40992", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkvarhT2 [readStart = "40994", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkvarhT3 [readStart = "40996", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+            Thing data totalkvarhT4 [readStart = "40998", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+        }
+
+
+}
