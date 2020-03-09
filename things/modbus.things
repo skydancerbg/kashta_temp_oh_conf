@@ -642,3 +642,163 @@ Bridge modbus:serial:energy_metters_slave105 [port="/dev/ttyUSB0",baud=9600,id=1
 
 
 }
+
+//! Thermmo PUMP 3 PHASE ENERGY METER
+Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=102,stopBits="1.0",parity="even",dataBits=8,encoding="rtu"]
+{
+//         VOLTAGE BY PHASE 
+// Part of Data Package	Description	Value
+// 66	Slave address	0x66 (102)
+// 03	Function code	0x03 (3) - Read Holding Registers
+// L1: 00 0E	Starting address	0x000F (15) / L2: 00 10	Starting address	0x0011 (17) / L3: 00 12	Starting address	0x0013 (19)
+// 00 02	Quantity	0x0002 (2)
+// AD DF	CRC	0xADDF (44511)
+
+// Voltage:
+        Bridge poller volt [start = 14, length = 6, refresh = 10000, type = "holding"]
+        {
+            Thing data V_L1 [readStart = "14", readValueType = "float32"]
+            Thing data V_L2 [readStart = "16", readValueType = "float32"]
+            Thing data V_L3 [readStart = "18", readValueType = "float32"]
+        }
+
+
+//         GRID FREQUENCY
+// 66	Slave address	0x66 (102)
+// 03	Function code	0x03 (3) - Read Holding Registers
+// 00 14	Starting address	0x0015 (21)
+// 00 02	Quantity	0x0002 (2)
+// 8C 18	CRC	0x8C18 (35864) 
+// Grid Frequency:
+       Bridge poller Hz [start = 20, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data Hz [readStart = "20", readValueType = "float32"] //, readTransform = "JS(divide100.js)"]
+        }
+
+//         CURRENT BY PHASE
+// Part of Data Package	Description	Value
+// 66	Slave address	0x66 (102)
+// 03	Function code	0x03 (3) - Read Holding Registers
+// L1: 00 16	Starting address	0x0017 (23) / L2: 00 18	Starting address	0x0019 (25) / L3: 00 1A	Starting address	0x001B (27)
+// 00 02	Quantity	0x0002 (2)
+// 2D D8	CRC	0x2DD8 (11736)
+        Bridge poller ampers [start = 22, length = 6, refresh = 10000, type = "holding"]
+        {
+            Thing data A_L1 [readStart = "22", readValueType = "float32"]
+            Thing data A_L2 [readStart = "24", readValueType = "float32"]
+            Thing data A_L3 [readStart = "26", readValueType = "float32"]
+        }
+
+
+//        TOTAL ACTIVE POWER
+// Part of Data Package	Description	Value
+// 66	Slave address	0x66 (102)
+// 03	Function code	0x03 (3) - Read Holding Registers
+// 00 1C	Starting address	0x001D (29)
+// 00 02	Quantity	0x0002 (2)
+// 0D DA	CRC	0x0DDA (3546)
+
+//        ACTIVE POWER BY PHASE
+// Part of Data Package	Description	Value
+// 66	Slave address	0x66 (102)
+// 03	Function code	0x03 (3) - Read Holding Registers
+// L1: 00 1E	Starting address	0x001F (31) / L2: 00 20	Starting address	0x0021 (33) / L3: 00 22	Starting address	0x0023 (35)
+// 00 02	Quantity	0x0002 (2)
+// AC 1A	CRC	0xAC1A (44058)
+
+//        TOTAL ACTIVE ENERGY 
+// Part of Data Package	Description	Value
+// 66	Slave address	0x66 (102)
+// 03	Function code	0x03 (3) - Read Holding Registers
+// 01 00	Starting address	0x0101 (257)
+// 00 02	Quantity	0x0002 (2)
+// CD E0	CRC	0xCDE0 (52704)
+
+//        ACTIVE ENERGY BY PHASE
+// Part of Data Package	Description	Value
+// 66	Slave address	0x66 (102)
+// 03	Function code	0x03 (3) - Read Holding Registers
+// L1: 01 02	Starting address	0x0103 (259) / L2: 01 04	Starting address	0x0105 (261) / L3: 01 06	Starting address	0x0107 (263)
+// 00 02	Quantity	0x0002 (2)
+// 6C 20	CRC	0x6C20 (27680)
+
+
+
+
+
+// TEST VOLTAGE:.... 15/17/19
+// METER MODBUS ID:
+       Bridge poller id [start = 14, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data ID [readStart = "14", readValueType = "float32"] //, readTransform = "JS(divide100.js)"]
+        }
+
+
+// TEST VOLTAGE L2 :....
+
+
+
+
+// // Voltage:
+//         //! Holding rgister 306 - bacuse it is zero based in the binding we read 305 =(306-1)                        
+//         Bridge poller volt [start = 305, length = 1, refresh = 10000, type = "holding"]
+//         // Bridge poller volt [start = 306, length = 1, refresh = 10000, type = "holding"]
+//         {
+//             Thing data V [readStart = "305", readValueType = "uint16", readTransform = "JS(divide100.js)"]
+//             // Thing data V [readStart = "306", readValueType = "uint16", readTransform = "JS (divide100.js)"]
+//         }
+
+// // Current:
+//         Bridge poller ampers [start = 313, length = 2, refresh = 10000, type = "holding"]
+//         {
+//             Thing data A [readStart = "313", readValueType = "uint32", readTransform = "JS(divide1000.js)"]    
+//         }
+
+// // Active Power:
+//         Bridge poller power [start = 320, length = 2, refresh = 10000, type = "holding"]
+//         {
+//             Thing data P [readStart = "320", readValueType = "uint32"]  
+//         }
+
+// // Reactive Power:
+//         Bridge poller reactive_power [start = 328, length = 2, refresh = 10000, type = "holding"]
+//         {
+//             Thing data rP [readStart = "328", readValueType = "uint32"]  
+//         }
+
+// // Apparent Power:
+//         Bridge poller apparent_power [start = 336, length = 2, refresh = 10000, type = "holding"]
+//         {
+//             Thing data aP [readStart = "336", readValueType = "uint32"]  
+//         }
+
+// // Power Factor:
+//         // Bridge poller power_factor [start = 344, length = 1, refresh = 10000, type = "holding"]
+//         // {
+//         //     Thing data Pf [readStart = "344", readValueType = "uint16", readTransform = "JS(divide1000.js)"]  
+//         // }
+
+
+
+// // Active Energy:
+//         Bridge poller totalkwh [start = 40960, length = 10, refresh = 10000, type = "holding"]
+//         {
+//             Thing data totalkwh [readStart = "40960", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//             Thing data totalkwhT1 [readStart = "40962", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//             Thing data totalkwhT2 [readStart = "40964", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//             Thing data totalkwhT3 [readStart = "40966", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//             Thing data totalkwhT4 [readStart = "40968", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//         }
+
+// // Reactive Energy:
+//         Bridge poller totalkvarh [start = 40990, length = 10, refresh = 10000, type = "holding"]
+//         {
+//             Thing data totalkvarh   [readStart = "40990", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//             Thing data totalkvarhT1 [readStart = "40992", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//             Thing data totalkvarhT2 [readStart = "40994", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//             Thing data totalkvarhT3 [readStart = "40996", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//             Thing data totalkvarhT4 [readStart = "40998", readValueType = "uint32", readTransform = "JS(divide100.js)"]
+//         }
+
+
+}

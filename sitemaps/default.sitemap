@@ -24,6 +24,42 @@ sitemap default label="My home automation" {
 
     //     Group item=Gr_GF_HR_NU_TMP_DIY_SOLAR_TANK_TEMPERATURES
     // }
+    Frame label="Electric meter Heat pump 517 - ID:102" {
+        Text item=ID_heat_pump_meter label="Modbus ID"
+        // Text item=Power_water_heater_meter label="Power Watts"
+        Text item=Voltage_L1_heat_pump_meter label="VOLTAGE L1"
+        Text item=Voltage_L2_heat_pump_meter label="VOLTAGE L2"
+        Text item=Voltage_L3_heat_pump_meter label="VOLTAGE L3"
+        Text item=Ampers_L1_heat_pump_meter label="Ampers L1"
+        Text item=Ampers_L2_heat_pump_meter label="Ampers L2"
+        Text item=Ampers_L3_heat_pump_meter label="Ampers L3"
+        Text item=Hz_heat_pump_meter label="Line frequency Hz"
+        // Text item=Reactive_power_water_heater_meter label="Reactive_power"
+        // Text item=Apparent_power label="Apparent_power"
+        // Text item=Power_factor_water_heater_meter label="Power_factor"
+        // Text item=TotalKWh_water_heater_meter label="TotalKWh"
+        // Text item=TotalCostWaterHeater label="Total cost in Lev"
+        // Text item=TotalKWhT1_water_heater_meter label="TotalKWh T1"
+        // Text item=TotalKWhT2_water_heater_meter label="TotalKWh T2"
+        // Text item=TotalKWhT3_water_heater_meter label="TotalKWh T3"
+        // Text item=TotalKWhT4_water_heater_meter label="TotalKWh T4"
+        // Text item=Totalkvarh_water_heater_meter label="Totalkvarh"
+        // Text item=TotalkvarhT1_water_heater_meter label="Totalkvarh T1"
+        // Text item=TotalkvarhT2_water_heater_meter label="Totalkvarh T2"
+        // Text item=TotalkvarhT3_water_heater_meter label="Totalkvarh T3"
+        // Text item=TotalkvarhT4_water_heater_meter label="Totalkvarh T4"
+
+        // Text item=year_month
+        // Text item=date_hour
+        // Text item=min_sec
+        // Text item=not_defined
+
+        // Text item=year_month_tst
+        // Text item=date_hour_tst
+
+    }
+
+
     Frame label="Electric meter Hot Water Heater 515 - ID:103" {
         Text item=Date label="Livingroom"
         Text item=DateDiffFormat label="Livingroo"
@@ -32,7 +68,7 @@ sitemap default label="My home automation" {
         Text item=Ampers_water_heater_meter label="Ampers"
         Text item=Hz_water_heater_meter label="Line frequency Hz"
         Text item=Reactive_power_water_heater_meter label="Reactive_power"
-        Text item=Apparent_power label="Apparent_power"
+        Text item=Apparent_power_water_heater_meter label="Apparent_power"
         Text item=Power_factor_water_heater_meter label="Power_factor"
         Text item=TotalKWh_water_heater_meter label="TotalKWh"
         Text item=TotalCostWaterHeater label="Total cost in Lev"
@@ -64,7 +100,7 @@ sitemap default label="My home automation" {
         Text item=Ampers_soalar_and_hw_recirculation_meter label="Ampers"
         Text item=Hz_soalar_and_hw_recirculation_meter label="Line frequency Hz"
         Text item=Reactive_power_soalar_and_hw_recirculation_meter label="Reactive_power"
-        Text item=Apparent_power_soalar_and_hw_recirculation_meter label="Apparent_power"
+        Text item=Apparent_soalar_and_hw_recirculation_meter label="Apparent_power"
         Text item=Power_factor_soalar_and_hw_recirculation_meter label="Power_factor"
         Text item=TotalKWh_soalar_and_hw_recirculation_meter label="TotalKWh"
         // Text item=TotalCostWaterHeater label="Total cost in Lev"

@@ -1,4 +1,33 @@
 
+
+Number ID_heat_pump_meter        "Voltage  [% .2f V]"                          <energy>          { channel="modbus:data:energy_metters_slave102:id:ID:number" }
+
+Number Voltage_L1_heat_pump_meter        "Voltage L1 [% .2f V]"                          <energy>          { channel="modbus:data:energy_metters_slave102:volt:V_L1:number" }
+Number Voltage_L2_heat_pump_meter        "Voltage L2 [% .2f V]"                          <energy>          { channel="modbus:data:energy_metters_slave102:volt:V_L2:number" }
+Number Voltage_L3_heat_pump_meter        "Voltage L3 [% .2f V]"                          <energy>          { channel="modbus:data:energy_metters_slave102:volt:V_L3:number" }
+Number Ampers_L1_heat_pump_meter         "Ampers  L1 [% .2f A]"                          <energy>          { channel="modbus:data:energy_metters_slave102:ampers:A_L1:number" }
+Number Ampers_L2_heat_pump_meter         "Ampers  L2 [% .2f A]"                          <energy>          { channel="modbus:data:energy_metters_slave102:ampers:A_L2:number" }
+Number Ampers_L3_heat_pump_meter         "Ampers  L3 [% .2f A]"                          <energy>          { channel="modbus:data:energy_metters_slave102:ampers:A_L3:number" }
+// Number Power_whell_pump_meter          "Watts      [% d W]"                            <energy>          { channel="modbus:data:energy_metters_slave105:power:P:number" }
+Number Hz_heat_pump_meter             "Hz   [% .2f Hz]"                               <energy>          { channel="modbus:data:energy_metters_slave102:Hz:Hz:number" }
+// Number Reactive_whell_pump_meter       "Instantaneous reactive power [% d var]"        <energy>          { channel="modbus:data:energy_metters_slave105:reactive_power:rP:number" }
+// Number Apparent_whell_pump_meter       "Instantaneous apparent power [% d VA]"         <energy>          { channel="modbus:data:energy_metters_slave105:apparent_power:aP:number" }
+// Number Power_factor_whell_pump_meter   "Power_factor   [%.2f]"                         <energy>          { channel="modbus:data:energy_metters_slave105:power_factor:Pf:number" }
+// Number TotalKWh_whell_pump_meter       "totalkwh   [%.2f kWh]"                         <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwh:number" }
+// Number TotalKWhT1_whell_pump_meter     "totalkwhT1   [%.2f kWh]"                       <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwhT1:number" }
+// Number TotalKWhT2_whell_pump_meter     "totalkwhT2   [%.2f kWh]"                       <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwhT2:number" }
+// Number TotalKWhT3_whell_pump_meter     "totalkwhT3   [%.2f kWh]"                       <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwhT3:number" }
+// Number TotalKWhT4_whell_pump_meter     "totalkwhT4   [%.2f kWh]"                       <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwhT4:number" }
+// Number Totalkvarh_whell_pump_meter     "Meter readout reactive energy [% .2f kvar]"    <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkvarh:totalkvarh:number" }
+// Number TotalkvarhT1_whell_pump_meter   "totalkvarhT1   [%.2f kvar]"                    <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkvarh:totalkvarhT1:number" }
+// Number TotalkvarhT2_whell_pump_meter   "totalkvarhT2   [%.2f kvar]"                    <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkvarh:totalkvarhT2:number" }
+// Number TotalkvarhT3_whell_pump_meter   "totalkvarhT3   [%.2f kvar]"                    <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkvarh:totalkvarhT3:number" }
+// Number TotalkvarhT4_whell_pump_meter   "totalkvarhT4   [%.2f kvar]"                    <electric_meter>  { channel="modbus:data:energy_metters_slave105:totalkvarh:totalkvarhT4:number" }
+
+
+
+
+
 // Number: ElectricPotential OU_V "Voltage [% .2f V]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: volt: V: number"}
 Number Voltage_water_heater_meter           "Voltage  [% .2f V]"                            <energy>          { channel="modbus:data:energy_metters_slave103:volt:V:number" }
 Number Ampers_water_heater_meter            "Ampers   [% .2f A]"                            <energy>          { channel="modbus:data:energy_metters_slave103:ampers:A:number" }
@@ -44,7 +73,7 @@ Number TotalkvarhT4_soalar_and_hw_recirculation_meter   "totalkvarhT4   [%.2f kv
 Number Voltage_whell_pump_meter        "Voltage    [% .2f V]"                          <energy>          { channel="modbus:data:energy_metters_slave105:volt:V:number" }
 Number Ampers_whell_pump_meter         "Ampers     [% .2f A]"                          <energy>          { channel="modbus:data:energy_metters_slave105:ampers:A:number" }
 Number Power_whell_pump_meter          "Watts      [% d W]"                            <energy>          { channel="modbus:data:energy_metters_slave105:power:P:number" }
-Number Hz_whell_pump_meterr            "Hz   [% .2f Hz]"                               <energy>          { channel="modbus:data:energy_metters_slave105:Hz:Hz:number" }
+Number Hz_whell_pump_meter             "Hz   [% .2f Hz]"                               <energy>          { channel="modbus:data:energy_metters_slave105:Hz:Hz:number" }
 Number Reactive_whell_pump_meter       "Instantaneous reactive power [% d var]"        <energy>          { channel="modbus:data:energy_metters_slave105:reactive_power:rP:number" }
 Number Apparent_whell_pump_meter       "Instantaneous apparent power [% d VA]"         <energy>          { channel="modbus:data:energy_metters_slave105:apparent_power:aP:number" }
 Number Power_factor_whell_pump_meter   "Power_factor   [%.2f]"                         <energy>          { channel="modbus:data:energy_metters_slave105:power_factor:Pf:number" }
