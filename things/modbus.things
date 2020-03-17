@@ -60,6 +60,10 @@
 // Communication commands will choose CRC check (2bytes)
 // Meter ID will use 01 as default, baud rate 9600bps, but 1200bps、 2400bps、 4800bps(optional)
 //
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Bridge modbus:serial:energy_metters_slave103 [port="/dev/ttyUSB0",baud=9600,id=103,stopBits="1.0",parity="even",dataBits=8,encoding="rtu"]
 // Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1,stopBits="1.0",parity="none",dataBits=8,encoding="rtu"]
 // Bridge modbus:serial:energy_metters_slave102 [port="usb-1a86_USB2.0-Serial-if00-port0",baud=9600,id=102,stopBits="1.0",parity="none",dataBits=8,encoding="rtu"]
@@ -497,6 +501,9 @@ Bridge modbus:serial:energy_metters_slave103 [port="/dev/ttyUSB0",baud=9600,id=1
 // T3:0.00 kvarh
 // T4:0.00 kvarh 
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //! SOALR HOT WATER SYSTEM AND HOT WATER RECIRCULATION PUMP ENERGY METER
 Bridge modbus:serial:energy_metters_slave104 [port="/dev/ttyUSB0",baud=9600,id=104,stopBits="1.0",parity="even",dataBits=8,encoding="rtu"]
 {
@@ -643,6 +650,8 @@ Bridge modbus:serial:energy_metters_slave105 [port="/dev/ttyUSB0",baud=9600,id=1
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //! Thermmo PUMP 3 PHASE ENERGY METER
 Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=102,stopBits="1.0",parity="even",dataBits=8,encoding="rtu"]
 {
@@ -698,6 +707,11 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // 00 02	Quantity	0x0002 (2)
 // 0D DA	CRC	0x0DDA (3546)
 
+        Bridge poller total_active_power [start = 28, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data aP [readStart = "28", readValueType = "uint32"]  
+        }
+
 //        ACTIVE POWER BY PHASE
 // Part of Data Package	Description	Value
 // 66	Slave address	0x66 (102)
@@ -706,6 +720,13 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // 00 02	Quantity	0x0002 (2)
 // AC 1A	CRC	0xAC1A (44058)
 
+        Bridge poller active_power_by_phase [start = 30, length = 6, refresh = 10000, type = "holding"]
+        {
+            Thing data aP_L1 [readStart = "30", readValueType = "float32"]
+            Thing data aP_L2 [readStart = "32", readValueType = "float32"]
+            Thing data aP_L3 [readStart = "34", readValueType = "float32"]
+        }
+
 //        TOTAL ACTIVE ENERGY 
 // Part of Data Package	Description	Value
 // 66	Slave address	0x66 (102)
@@ -713,6 +734,10 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // 01 00	Starting address	0x0101 (257)
 // 00 02	Quantity	0x0002 (2)
 // CD E0	CRC	0xCDE0 (52704)
+        Bridge poller total_active_energy [start = 256, length = 2, refresh = 10000, type = "holding"]
+        {
+            Thing data aE [readStart = "256", readValueType = "uint32", readTransform = "JS(divide100.js)"]  
+        }
 
 //        ACTIVE ENERGY BY PHASE
 // Part of Data Package	Description	Value
@@ -722,16 +747,22 @@ Bridge modbus:serial:energy_metters_slave102 [port="/dev/ttyUSB0",baud=9600,id=1
 // 00 02	Quantity	0x0002 (2)
 // 6C 20	CRC	0x6C20 (27680)
 
+        Bridge poller active_energy_by_phase [start = 258, length = 6, refresh = 10000, type = "holding"]
+        {
+            Thing data aE_L1 [readStart = "258", readValueType = "float32", readTransform = "JS(divide100.js)"]
+            Thing data aE_L2 [readStart = "260", readValueType = "float32", readTransform = "JS(divide100.js)"]
+            Thing data aE_L3 [readStart = "262", readValueType = "float32", readTransform = "JS(divide100.js)"]
+        }
 
 
 
 
 // TEST VOLTAGE:.... 15/17/19
 // METER MODBUS ID:
-       Bridge poller id [start = 14, length = 2, refresh = 10000, type = "holding"]
-        {
-            Thing data ID [readStart = "14", readValueType = "float32"] //, readTransform = "JS(divide100.js)"]
-        }
+//        Bridge poller id [start = 14, length = 2, refresh = 10000, type = "holding"]
+//         {
+//             Thing data ID [readStart = "14", readValueType = "float32"] //, readTransform = "JS(divide100.js)"]
+//         }
 
 
 // TEST VOLTAGE L2 :....

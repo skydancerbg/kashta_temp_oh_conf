@@ -5,7 +5,64 @@ sitemap default label="My home automation" {
         Text item=DateDiffFormat label="Livingroo"
         }
 
-    //     Frame label="КОНТРОЛЕР СЕНЗОРИ КОТЕЛНО:" icon="water" {
+
+    Frame label="КОНТРОЛЕР СЕНЗОРИ КОТЕЛНО:" icon="water" {
+
+        Group item=Gr_GF_HR_AM_ET_DIY_Heating_Room_Sensors
+    }
+
+    Frame label="КОНТРОЛЕР УПРАВЛЕНИЕ КОТЕЛНО:" icon="water" {
+
+        Group item=Gr_GF_HR_AM_ET_DIY_Heating_Room_Ctrl
+    }
+
+    // Frame label="УПРАВЛЕНИЕ НА СОНДАЖНАТА ПОМПА:" icon="water" {
+
+    //     Group item=Gr_GF_HR_NU_WF_DIY_Well_Pump_Ctrl
+    // }
+
+    // Frame label="ТЕМПЕРАТУРИ НА СЛЪНЧЕВИЯ БОЙЛЕР:" icon="Temperature" {
+
+    //     Group item=Gr_GF_HR_NU_TMP_DIY_SOLAR_TANK_TEMPERATURES
+    // }
+
+    Frame label="МОМЕНТНА КОНСУМАЦИЯ НА ЕЛЕКТРО ЕНЕРГИЯ (W):" icon="electric_meter" {
+
+        Text item=Total_Active_Power_heat_pump_meter label="ТЕРМОПОМПА ОБЩО (ТРИФАЗНО)"
+        Text item=Power_water_heater_meter label="НАГРЕВАТЕЛ НА БОЙЛЕРА"
+        Text item=Power_recuperator_meter label="РЕКУПЕРАТОР"
+        Text item=Power_soalar_and_hw_recirculation_meter label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
+
+            Frame label="ТЕРМОПОМПА - МОМЕНТНА КОНСУМАЦИЯ ПО ФАЗИ (W):" icon="electric_meter" {
+                Text item=Active_Power_L1_heat_pump_meter label="ТЕРМОПОМПА ФАЗА 1"
+                Text item=Active_Power_L2_heat_pump_meter label="ТЕРМОПОМПА ФАЗА 2"
+                Text item=Active_Power_L3_heat_pump_meter label="ТЕРМОПОМПА ФАЗА 3"
+            
+            }
+    }
+
+    Frame label="ПОТРЕБЕНА ЕЛЕКТРО ЕНЕРГИЯ ДО МОМЕНТА (KWh):" icon="electric_meter" {
+
+        Text item=Total_KWh_heat_pump_meter label="ТЕРМОПОМПА (ТРИФАЗНО)"
+        Text item=TotalKWh_water_heater_meter label="НАГРЕВАТЕЛ НА БОЙЛЕРА"
+        Text item=TotalKWh_recuperator_meter label="РЕКУПЕРАТОР"
+        Text item=TotalKWh_soalar_and_hw_recirculation_meter label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
+
+    }
+
+
+    Frame label="vOLTAGE COMPARISON" {
+        // Text item=Power_water_heater_meter label="Power Watts"
+        Text item=Voltage_L1_heat_pump_meter label="VOLTAGE L1"
+        Text item=Voltage_water_heater_meter label="VOLTAGE HOT WATER L1"
+
+        Text item=Voltage_L2_heat_pump_meter label="VOLTAGE L2"
+        Text item=Voltage_recuperator_meter label="VOLTAGE RECUPERATOR L2"
+
+        Text item=Voltage_L3_heat_pump_meter label="VOLTAGE L3"
+        Text item=Voltage_soalar_and_hw_recirculation_meter label="VOLTAGE SOLR L3"
+
+        }    //     Frame label="КОНТРОЛЕР СЕНЗОРИ КОТЕЛНО:" icon="water" {
 
     //     Group item=Gr_GF_HR_AM_ET_DIY_Heating_Room_Sensors
     // }
@@ -25,8 +82,16 @@ sitemap default label="My home automation" {
     //     Group item=Gr_GF_HR_NU_TMP_DIY_SOLAR_TANK_TEMPERATURES
     // }
     Frame label="Electric meter Heat pump 517 - ID:102" {
-        Text item=ID_heat_pump_meter label="Modbus ID"
-        // Text item=Power_water_heater_meter label="Power Watts"
+        Text item=Total_Active_Power_heat_pump_meter label="Total Power Watts"
+        Text item=Active_Power_L1_heat_pump_meter label="Power L1 Watts"
+        Text item=Active_Power_L2_heat_pump_meter label="Power L2 Watts"
+        Text item=Active_Power_L3_heat_pump_meter label="Power L3 Watts"
+
+        Text item=Total_KWh_heat_pump_meter label="Total KWh"
+        Text item=Total_KWh_L1_heat_pump_meter label="Total KWh L1"
+        Text item=Total_KWh_L2_heat_pump_meter label="Total KWh L2"
+        Text item=Total_KWh_L3_heat_pump_meter label="Total KWh L3"
+        
         Text item=Voltage_L1_heat_pump_meter label="VOLTAGE L1"
         Text item=Voltage_L2_heat_pump_meter label="VOLTAGE L2"
         Text item=Voltage_L3_heat_pump_meter label="VOLTAGE L3"
@@ -63,7 +128,7 @@ sitemap default label="My home automation" {
     Frame label="Electric meter Hot Water Heater 515 - ID:103" {
         Text item=Date label="Livingroom"
         Text item=DateDiffFormat label="Livingroo"
-        Text item=Power_water_heater_meter label="Power Watts"
+        Text item=Power_water_heater_meter label="103 Power Watts"
         Text item=Voltage_water_heater_meter label="VOLTAGE"
         Text item=Ampers_water_heater_meter label="Ampers"
         Text item=Hz_water_heater_meter label="Line frequency Hz"
@@ -92,10 +157,41 @@ sitemap default label="My home automation" {
 
     }
 
-        Frame label="Solar and HW recirculation pump electric meter 515 - ID:104" {
+            Frame label="recuperator electric meter 515 - ID:104" {
         // Text item=Date label="Livingroom"
         // Text item=DateDiffFormat label="Livingroo"
-        Text item=Power_soalar_and_hw_recirculation_meter label="Power Watts"
+        Text item=Power_recuperator_meter label="104 Power Watts"
+        Text item=Voltage_recuperator_meter label="VOLTAGE"
+        Text item=Ampers_recuperator_meter label="Ampers"
+        Text item=Hz_recuperator_meter label="Line frequency Hz"
+        Text item=Reactive_recuperator_meter label="Reactive_power"
+        Text item=Apparent_recuperator_meter label="Apparent_power"
+        Text item=Power_factor_recuperator_meter label="Power_factor"
+        Text item=TotalKWh_recuperator_meter label="TotalKWh"
+        // Text item=TotalCostWaterHeater label="Total cost in Lev"
+        Text item=TotalKWhT1_recuperator_meter label="TotalKWh T1"
+        Text item=TotalKWhT2_recuperator_meter label="TotalKWh T2"
+        Text item=TotalKWhT3_recuperator_meter label="TotalKWh T3"
+        Text item=TotalKWhT4_recuperator_meter label="TotalKWh T4"
+        Text item=Totalkvarh_recuperator_meter label="Totalkvarh"
+        Text item=TotalkvarhT1_recuperator_meter label="Totalkvarh T1"
+        Text item=TotalkvarhT2_recuperator_meter label="Totalkvarh T2"
+        Text item=TotalkvarhT3_recuperator_meter label="Totalkvarh T3"
+        Text item=TotalkvarhT4_recuperator_meter label="Totalkvarh T4"
+
+        // Text item=year_month
+        // Text item=date_hour
+        // Text item=min_sec
+        // Text item=not_defined
+
+        // Text item=year_month_tst
+        // Text item=date_hour_tst
+
+    }
+        Frame label="Solar and HW recirculation pump electric meter 515 - ID:105" {
+        // Text item=Date label="Livingroom"
+        // Text item=DateDiffFormat label="Livingroo"
+        Text item=Power_soalar_and_hw_recirculation_meter label="105 Power Watts"
         Text item=Voltage_soalar_and_hw_recirculation_meter label="VOLTAGE"
         Text item=Ampers_soalar_and_hw_recirculation_meter label="Ampers"
         Text item=Hz_soalar_and_hw_recirculation_meter label="Line frequency Hz"
@@ -124,36 +220,5 @@ sitemap default label="My home automation" {
 
     }
 
-            Frame label="Whell pump electric meter 515 - ID:105" {
-        // Text item=Date label="Livingroom"
-        // Text item=DateDiffFormat label="Livingroo"
-        Text item=Power_whell_pump_meter label="Power Watts"
-        Text item=Voltage_whell_pump_meter label="VOLTAGE"
-        Text item=Ampers_whell_pump_meter label="Ampers"
-        Text item=Hz_whell_pump_meter label="Line frequency Hz"
-        Text item=Reactive_whell_pump_meter label="Reactive_power"
-        Text item=Apparent_whell_pump_meter label="Apparent_power"
-        Text item=Power_factor_whell_pump_meter label="Power_factor"
-        Text item=TotalKWh_whell_pump_meter label="TotalKWh"
-        // Text item=TotalCostWaterHeater label="Total cost in Lev"
-        Text item=TotalKWhT1_whell_pump_meter label="TotalKWh T1"
-        Text item=TotalKWhT2_whell_pump_meter label="TotalKWh T2"
-        Text item=TotalKWhT3_whell_pump_meter label="TotalKWh T3"
-        Text item=TotalKWhT4_whell_pump_meter label="TotalKWh T4"
-        Text item=Totalkvarh_whell_pump_meter label="Totalkvarh"
-        Text item=TotalkvarhT1_whell_pump_meter label="Totalkvarh T1"
-        Text item=TotalkvarhT2_whell_pump_meter label="Totalkvarh T2"
-        Text item=TotalkvarhT3_whell_pump_meter label="Totalkvarh T3"
-        Text item=TotalkvarhT4_whell_pump_meter label="Totalkvarh T4"
-
-        // Text item=year_month
-        // Text item=date_hour
-        // Text item=min_sec
-        // Text item=not_defined
-
-        // Text item=year_month_tst
-        // Text item=date_hour_tst
-
-    }
 
 }
