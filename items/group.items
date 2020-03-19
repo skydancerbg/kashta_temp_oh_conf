@@ -1,0 +1,107 @@
+//// PERSISTENCE
+// !!! All ITEMS IN THIS GROUP WILL BE PERSISTED ON EVERY CHANGE AND ON STARTUP
+
+
+Group Gr_Persist_State_On_Statup
+
+//// SECURITY SYSTEM
+// !!! All Group items for the security system are located in security_system.rules file
+
+//// LIGHTNING
+
+Group:Switch:OR(ON, OFF)    gAllLights   "Осветление всички [%d ВКЛЮЧЕН(И)]"
+Group:Switch:OR(ON, OFF)    gStefBedroomLights   "Осветление спалня Стефан [%d ON]"
+Group:Switch:OR(ON, OFF)    Gr_Kitchen_Lights   "Осветление кухня [%d ON]"
+
+// Къща БЕНКОВСКИ:
+// Групите в къщата ще са с главни букви!
+// За къщата групата всички светлини ще се казва:
+Group:Switch:OR(ON, OFF)    Gr_ALL_LIGHTS   "Осветление всички [%d ВКЛЮЧЕН(И)]"
+// ??? Group:Switch:OR(ON, OFF)    Gr_GF_LIGHTS   "Осветление кухня [%d ON]"
+
+//// DOOR WINDOW SENSORS
+// Group:Switch:OR(ON, OFF)    gAll_DW_Sensors   "Осветление всички [%d ON]"
+// Group:Switch:OR(OPEN, CLOSED)    gAll_DW_Sensors   "Датчици на врати и прозорци [%d OPEN]"
+// Group:Switch:OR(CLOSED, OPEN)    gAll_DW_Sensors   "Датчици на врати и прозорци [%d OPEN]"
+Group:Number:SUM     gAll_DW_Sensors   "Датчици на врати и прозорци [%d ОТВОРЕН(И)]"
+
+Group:Number:SUM     gKitchen_Refrigerator_WF_Sensors   "Кухня - хладилник: Датчици за теч на вода [%d ОТВОРЕН(И)]"
+
+
+// Group:Number:SUM 				gnuDoorSensor_Glasbruch_Status      "Glasbruchmelder Status sum [(%d)]"
+// Group:Switch:OR(ON,OFF) 		gswDoorSensor_Glasbruch_Status_All  "Glasbruchmelder Status alle [(%d)]"
+
+//// POWER
+Group:Switch:OR(ON, OFF)    gAllPower   "Консуматори  [%d ВКЛЮЧЕН(И)]"
+// Къща БЕНКОВСКИ:
+Group:Switch:OR(ON, OFF)    Gr_ALL_POWER   "Консуматори  [%d ВКЛЮЧЕН(И)]"
+
+//// LOW BATTERY ALERT
+Group:Switch:OR(ON, OFF)    gAllLowBattery  "Батерии за подмяна  [%d ИЗТОЩЕНА(И) БАТЕРИИ]"
+
+Group:Switch:OR(ON, OFF)    gAllBatteryLevel   "НИВО БАТЕРИИ  [БРОЙ УСТРОЙСТВА ДОКЛАДВАЩИ НИВО: %d]"
+
+
+// Group Gr_GF             "Ground Floor"  <groundfloor>   ["GroundFloor"]
+// Group Garden            "Garden"        <garden>        ["Garden"]
+// Group Presence          "Presence"     <presence>     ["Presence"]
+// Group HeatingCooling    "Heating and Cooling"     <presence>     ["HeatingCooling"]
+
+// // // // TEMPERATURES
+Group Gr_Temperature_measurments
+Group:Number:AVG Gr_S_Bdrm_Temperature "Stefan's Temperatures [%.1f °C]"
+
+Group:Number:AVG Gr_House_Inside_Temperature "Средна температура къща: [%.1f °C]"
+Group:Number:AVG Gr_House_Outside_Temperature "Средна външна температура къща: [%.1f °C]"
+
+Group gStefansBedroomNightLightControll
+Group gCorridorNightLightControll
+Group gKitchenNightLightControll
+Group gKitchenConterLightControll
+
+// // // // // // // / // // / / / / / / / / / / / / // / 
+// // // / 
+// // // // // ОТОПЛЕНИЕ
+// // // // // // // 
+
+Group Gr_GF_OF // Home Office
+Group:Number:AVG GF_OF_Temperature "Home Office Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
+
+Group Group_Heating
+Group Group_SetPoint
+Group Group_SetPoint_Command
+Group Group_Room_Temperature
+
+// // // // // STEFANS BEDROOM HEATING // // // // // // // // 
+Group Gr_AT_BR // Bedroom - Stefan's
+Group:Number:AVG Gr_AT_BR_Temperature "Stefans Bedroom Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
+
+Group Group_AT_Heating // APARTMENT HEATING GROUP
+
+Group Group_AT_BR_SetPoint
+Group Group_AT_BR_SetPoint_Command
+Group Group_AT_BR_Room_Temperature
+
+// // // // // STEFANS BEDROOM HEATING // // // // // // // // 
+Group Gr_AT_KN // Bedroom - Stefan's
+Group:Number:AVG Gr_AT_KN_Temperature "Kitchen Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
+
+Group Group_AT_KN_SetPoint
+Group Group_AT_KN_SetPoint_Command
+Group Group_AT_KN_Room_Temperature
+
+
+
+
+// // LINKS TO SITEMAPS!!!!!!
+String admin_site  "http://192.168.1.201:8080/basicui/app?sitemap=administration"
+
+// // Template for devices ON/OFF counter group
+// Group:Switch:OR(ON, OFF)    x   "x[%d ON]"
+// Switch                      x1  (x)
+// Switch                      x2  (x)
+// Switch                      x3  (x)
+// sitemap tmp label="TMP" {
+// 	Switch item=x
+// 	Group item=x
+// }

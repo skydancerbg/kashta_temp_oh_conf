@@ -1,9 +1,146 @@
-sitemap default label="My home automation" {
+sitemap default label="КЪЩА БЕНКОВСКИ - ГЕЛЕ КИТОВ №8" {
 
         Frame label="даtа час ntp" {
         Text item=Date label="Livingroom"
         Text item=DateDiffFormat label="Livingroo"
         }
+        Frame label="XIAOMI DEVICES:" icon="temperature" {
+            Text label="ТЕМПЕРАТУРИ КЪЩА:" icon="temperature" {
+                Frame label="ТЕМПЕРАТУРИ КЪЩА:" icon="groundfloor" {
+                        // Text  item=GF_Sonoff_TH16_1_Temperature //label="КЪЩА: ЕТАЖ 1 TH16_1:" 
+                        // Text  item=GF_Sonoff_TH16_2_Temperature //label="КЪЩА: ЕТАЖ 2 TH16_2:" 
+                        // Text  item=GF_Sonoff_TH16_3_Temperature //label="КЪЩА: РАБОТИЛНИЦА TH16_3:" 
+                        // Text  item=GF_Sonoff_TH16_4_Temperature //label="КЪЩА: TH16_4:" 
+                        // Text  item=GF_Sonoff_TH16_5_Temperature //label="КЪЩА: TH16_5:" 
+                        // Text  item=GF_Sonoff_TH16_6_Temperature //label="КЪЩА: TH16_6:"
+                        // Text  item=GF_TE_XA_THP_1_Outside_Temperature
+                        // Group item= GF_TE_XA_THP_2_Office_Temperature label="TE_ZB_КЪЩА: Температура Офис:"
+                        Text  item=XGW2_XA_THP_1_Temperature label="КЪЩА: AQARA THP_1:" 
+                        Text  item=XGW2_XA_THP_2_Temperature label="КЪЩА: AQARA THP_2:" 
+                        Text  item=XGW2_XA_THP_3_Temperature label="КЪЩА: AQARA THP_3:" 
+                        Text  item=XGW2_XA_THP_4_Temperature label="КЪЩА: AQARA THP_4:" 
+                        Text  item=XGW2_XA_THP_5_Temperature label="КЪЩА: AQARA THP_5:" 
+                        Text  item=XGW2_XA_THP_6_Temperature label="КЪЩА: AQARA THP_6:" 
+                }
+            }            
+        }
+
+        Frame label="Температури къща:" icon="temperature" {
+                Group item=Gr_House_Inside_Temperature label="Средно измерена температура: [%.1f °C]" icon="temperature"
+            
+                Text label="Графика на измерените температури" icon="temperature" {
+                        Frame label="Температура в къщата:" 
+                            {
+                            // Chart [item=<itemname>] [icon="<iconname>"] [label="<labelname>"] [refresh=xxxx] [period=xxxx] [service="<service>"] [begin=yyyyMMddHHmm] [end=yyyyMMddHHmm] [legend=true/false]
+                            // period is the scale of the time axis. Valid values are h, 4h, 8h, 12h, D, 2D, 3D, W, 2W, M, 2M, 4M or Y
+                            // refresh defines the refresh period of the Image (in milliseconds).
+
+                                Chart item=Gr_House_Inside_Temperature refresh=6000 period=12h
+                                // Chart item=Gr_Temperature_measurments refresh=300 period=12h
+                                // Chart item=Aeotec61_1_Temperature refresh=300 period=h
+
+                            }
+                }
+        }
+
+        Frame label="УСТРОЙСТВА НА БАТЕРИИ - НИВО НА БАТЕРИЯТА:" icon="battery" {    
+            // Text item=gAllBatteryLevel //icon="batterylevel"
+            Group item=gAllBatteryLevel icon="batterylevel"
+
+        }
+
+        Frame label="Xiaomi УСТРОЙСТВА - АЛАРМА ЗА НИСКО НИВО НА БАТЕРИЯТА:" icon="groundfloor" {    
+            Switch item=gAllLowBattery icon="lowbattery"
+            Group item=gAllLowBattery icon="lowbattery"
+        }
+
+        Frame label="Xiaomi Gateways Control" icon="groundfloor" {
+            Text label="Xiaomi Gateway 2" icon="groundfloor" {
+                    
+
+                    Frame label="XiaomiGateway2" icon="groundfloor" {
+
+                        // Group item=gXiaomiGateway       label="Xiaomi MI Gateway"
+                        Switch  item=XGW_Gateway2_EnableInclusion
+                        Switch  item=XGW_Gateway2_LightSwitch
+                        Slider  item=XGW_Gateway2_Brightness
+                        Colorpicker    item=XGW_Gateway2_Color
+                        Slider  item=XGW_Gateway2_ColorTemperature
+                        Text  item=XGW_Gateway2_AmbientLight
+                        Switch  item=XGW_Gateway2_SoundSwitch
+                        Slider  item=XGW_Gateway2_SoundVolume            
+                    // Selection for Xiaomi Gateway Sounds
+                    // 10000 is STOP
+                    // >10001 are own sounds you uploaded to the gateway
+                        Selection item=XGW_Gateway2_Sound mappings=[ 0="police car 1",
+                                                                    1="police car 2",
+                                                                    2="accident",
+                                                                    3="countdown",
+                                                                    4="ghost",
+                                                                    5="sniper rifle",
+                                                                    6="battle",
+                                                                    7="air raid",
+                                                                    8="bark",
+                                                                    10="doorbell",
+                                                                    11="knock at a door",
+                                                                    12="amuse",
+                                                                    13="alarm clock",
+                                                                    20="mimix",
+                                                                    21="enthusuastic",
+                                                                    22="guitar classic",
+                                                                    23="ice world piano",
+                                                                    24="leisure time",
+                                                                    25="child hood",
+                                                                    26="morning stream liet",
+                                                                    27="music box",
+                                                                    28="orange",
+                                                                    29="thinker"]   
+
+                        Switch item=XiaomiGateway2_Play_Sound_Dummy label="Play Knock-Knock w Rule"
+                    }
+            }
+
+        }
+
+        Frame label="Xiaomi Gateways Sensors and Devices" icon="groundfloor" {
+            Text label="Xiaomi Gateway 2" icon="groundfloor" {
+                Frame label="Gateway 2 Sensors/Devices" icon="groundfloor" {
+                    
+                    Frame label="Xiaomi Gateway 2 Devices" icon="groundfloor" {     
+                        Group item=gXiGW2_sensor_plug_1  label="MI GW 2 sensor_plug"
+                        Group item=gXiGW2_door_window_1  label="MI GW 2 door_window_1"
+                        Group item=gXiGW2_mia_motion_sensor_1  label="MI GW 2 motion_sensor_1"
+                        Group item=gXiGW2_mia_motion_sensor_2  label="MI GW 2 motion_sensor_2"
+                        Group item=gXiGW2_mia_motion_sensor_3  label="MI GW 2 motion_sensor_3"
+                        Group item=gXiGW2_mia_motion_sensor_4  label="MI GW 2 motion_sensor_4"
+                        Group item=gXiGW2_mia_wireless_switch_1  label="MI GW 2 wireless_switch_1"
+                        Group item=gXiGW2_mia_wireless_switch_2  label="MI GW 2 wireless_switch_2"
+                        Group item=gMIGW2_XA_THP_sensor_1  label="MI GW 2 THP_sensor_1"
+                        Group item=gMIGW2_XA_THP_sensor_2  label="MI GW 2 THP_sensor_2"
+                        Group item=gMIGW2_XA_THP_sensor_3  label="MI GW 2 THP_sensor_3"
+                        Group item=gMIGW2_XA_THP_sensor_4  label="MI GW 2 THP_sensor_4"
+                        Group item=gMIGW2_XA_THP_sensor_5  label="MI GW 2 THP_sensor_5"
+                        Group item=gMIGW2_XA_THP_sensor_6  label="MI GW 2 THP_sensor_6"
+                    }
+                }
+            }           
+        }
+
+
+
+    Frame label="ПОКАЗАНИЯ НА ЕЛЕКТРОМЕРИТЕ:" icon="light" {    
+    
+        Text item=Gr_HR_ACTIVE_POWER //icon="light" //label="КЪЩА"
+        Text item=Meter_Total_Active_Power_heat_pump label="ТЕРМОПОМПА"
+        Text item=Meter_Power_well_pump label="СОНДАЖНА ПОМПА"
+        Text item=Meter_Power_soalar_and_hw_recirculation label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
+        Text item=Meter_Power_water_heater label="НАГРЕВАТЕЛ НА БОЙЛЕРА"
+        Text item=Meter_Power_recuperator label="РЕКУПЕРАТОР"
+
+        Text item=Gr_HR_Total_KWh //icon="light" //label="КЪЩА"
+        // Group item=gAllLights
+        // Group item=Gr_ALL_LIGHTS
+    }
 
 
     Frame label="КОНТРОЛЕР СЕНЗОРИ КОТЕЛНО:" icon="water" {
@@ -28,39 +165,41 @@ sitemap default label="My home automation" {
 
     Frame label="МОМЕНТНА КОНСУМАЦИЯ НА ЕЛЕКТРО ЕНЕРГИЯ (W):" icon="electric_meter" {
 
-        Text item=Total_Active_Power_heat_pump_meter label="ТЕРМОПОМПА ОБЩО (ТРИФАЗНО)"
-        Text item=Power_water_heater_meter label="НАГРЕВАТЕЛ НА БОЙЛЕРА"
-        Text item=Power_recuperator_meter label="РЕКУПЕРАТОР"
-        Text item=Power_soalar_and_hw_recirculation_meter label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
+        Text item=Meter_Total_Active_Power_heat_pump label="ТЕРМОПОМПА ОБЩО (ТРИФАЗНО)"
+        Text item=Meter_Power_well_pump label="СОНДАЖНА ПОМПА"
+        Text item=Meter_Power_soalar_and_hw_recirculation label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
+        Text item=Meter_Power_water_heater label="НАГРЕВАТЕЛ НА БОЙЛЕРА"
+        Text item=Meter_Power_recuperator label="РЕКУПЕРАТОР"
 
             Frame label="ТЕРМОПОМПА - МОМЕНТНА КОНСУМАЦИЯ ПО ФАЗИ (W):" icon="electric_meter" {
-                Text item=Active_Power_L1_heat_pump_meter label="ТЕРМОПОМПА ФАЗА 1"
-                Text item=Active_Power_L2_heat_pump_meter label="ТЕРМОПОМПА ФАЗА 2"
-                Text item=Active_Power_L3_heat_pump_meter label="ТЕРМОПОМПА ФАЗА 3"
+                Text item=Meter_Active_Power_L1_heat_pump label="ТЕРМОПОМПА ФАЗА 1"
+                Text item=Meter_Active_Power_L2_heat_pump label="ТЕРМОПОМПА ФАЗА 2"
+                Text item=Meter_Active_Power_L3_heat_pump label="ТЕРМОПОМПА ФАЗА 3"
             
             }
     }
 
     Frame label="ПОТРЕБЕНА ЕЛЕКТРО ЕНЕРГИЯ ДО МОМЕНТА (KWh):" icon="electric_meter" {
 
-        Text item=Total_KWh_heat_pump_meter label="ТЕРМОПОМПА (ТРИФАЗНО)"
-        Text item=TotalKWh_water_heater_meter label="НАГРЕВАТЕЛ НА БОЙЛЕРА"
-        Text item=TotalKWh_recuperator_meter label="РЕКУПЕРАТОР"
-        Text item=TotalKWh_soalar_and_hw_recirculation_meter label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
+        Text item=Meter_Total_KWh_heat_pump label="ТЕРМОПОМПА (ТРИФАЗНО)"
+        Text item=Meter_TotalKWh_well_pump label="СОНДАЖНА ПОМПА"
+        Text item=Meter_TotalKWh_soalar_and_hw_recirculation label="СЛЪНЧЕВА И РЕЦИРКУЛАЦИЯ НА БГВ"
+        Text item=Meter_TotalKWh_water_heater label="НАГРЕВАТЕЛ НА БОЙЛЕРА"
+        Text item=Meter_TotalKWh_recuperator label="РЕКУПЕРАТОР"
 
     }
 
 
     Frame label="vOLTAGE COMPARISON" {
         // Text item=Power_water_heater_meter label="Power Watts"
-        Text item=Voltage_L1_heat_pump_meter label="VOLTAGE L1"
-        Text item=Voltage_water_heater_meter label="VOLTAGE HOT WATER L1"
+        Text item=Meter_Voltage_L1_heat_pump label="VOLTAGE L1"
+        Text item=Meter_Voltage_water_heater label="VOLTAGE HOT WATER L1"
 
-        Text item=Voltage_L2_heat_pump_meter label="VOLTAGE L2"
-        Text item=Voltage_recuperator_meter label="VOLTAGE RECUPERATOR L2"
+        Text item=Meter_Voltage_L2_heat_pump label="VOLTAGE L2"
+        Text item=Meter_Voltage_recuperator label="VOLTAGE RECUPERATOR L2"
 
-        Text item=Voltage_L3_heat_pump_meter label="VOLTAGE L3"
-        Text item=Voltage_soalar_and_hw_recirculation_meter label="VOLTAGE SOLR L3"
+        Text item=Meter_Voltage_L3_heat_pump label="VOLTAGE L3"
+        Text item=Meter_Voltage_soalar_and_hw_recirculation label="VOLTAGE SOLR L3"
 
         }    //     Frame label="КОНТРОЛЕР СЕНЗОРИ КОТЕЛНО:" icon="water" {
 
@@ -82,23 +221,23 @@ sitemap default label="My home automation" {
     //     Group item=Gr_GF_HR_NU_TMP_DIY_SOLAR_TANK_TEMPERATURES
     // }
     Frame label="Electric meter Heat pump 517 - ID:102" {
-        Text item=Total_Active_Power_heat_pump_meter label="Total Power Watts"
-        Text item=Active_Power_L1_heat_pump_meter label="Power L1 Watts"
-        Text item=Active_Power_L2_heat_pump_meter label="Power L2 Watts"
-        Text item=Active_Power_L3_heat_pump_meter label="Power L3 Watts"
+        Text item=Meter_Total_Active_Power_heat_pump label="Total Power Watts"
+        Text item=Meter_Active_Power_L1_heat_pump label="Power L1 Watts"
+        Text item=Meter_Active_Power_L2_heat_pump label="Power L2 Watts"
+        Text item=Meter_Active_Power_L3_heat_pump label="Power L3 Watts"
 
-        Text item=Total_KWh_heat_pump_meter label="Total KWh"
-        Text item=Total_KWh_L1_heat_pump_meter label="Total KWh L1"
-        Text item=Total_KWh_L2_heat_pump_meter label="Total KWh L2"
-        Text item=Total_KWh_L3_heat_pump_meter label="Total KWh L3"
+        Text item=Meter_Total_KWh_heat_pump label="Total KWh"
+        Text item=Meter_Total_KWh_L1_heat_pump label="Total KWh L1"
+        Text item=Meter_Total_KWh_L2_heat_pump label="Total KWh L2"
+        Text item=Meter_Total_KWh_L3_heat_pump label="Total KWh L3"
         
-        Text item=Voltage_L1_heat_pump_meter label="VOLTAGE L1"
-        Text item=Voltage_L2_heat_pump_meter label="VOLTAGE L2"
-        Text item=Voltage_L3_heat_pump_meter label="VOLTAGE L3"
-        Text item=Ampers_L1_heat_pump_meter label="Ampers L1"
-        Text item=Ampers_L2_heat_pump_meter label="Ampers L2"
-        Text item=Ampers_L3_heat_pump_meter label="Ampers L3"
-        Text item=Hz_heat_pump_meter label="Line frequency Hz"
+        Text item=Meter_Voltage_L1_heat_pump label="VOLTAGE L1"
+        Text item=Meter_Voltage_L2_heat_pump label="VOLTAGE L2"
+        Text item=Meter_Voltage_L3_heat_pump label="VOLTAGE L3"
+        Text item=Meter_Ampers_L1_heat_pump label="Ampers L1"
+        Text item=Meter_Ampers_L2_heat_pump label="Ampers L2"
+        Text item=Meter_Ampers_L3_heat_pump label="Ampers L3"
+        Text item=Meter_Hz_heat_pump label="Line frequency Hz"
         // Text item=Reactive_power_water_heater_meter label="Reactive_power"
         // Text item=Apparent_power label="Apparent_power"
         // Text item=Power_factor_water_heater_meter label="Power_factor"
@@ -128,24 +267,24 @@ sitemap default label="My home automation" {
     Frame label="Electric meter Hot Water Heater 515 - ID:103" {
         Text item=Date label="Livingroom"
         Text item=DateDiffFormat label="Livingroo"
-        Text item=Power_water_heater_meter label="103 Power Watts"
-        Text item=Voltage_water_heater_meter label="VOLTAGE"
-        Text item=Ampers_water_heater_meter label="Ampers"
-        Text item=Hz_water_heater_meter label="Line frequency Hz"
-        Text item=Reactive_power_water_heater_meter label="Reactive_power"
-        Text item=Apparent_power_water_heater_meter label="Apparent_power"
-        Text item=Power_factor_water_heater_meter label="Power_factor"
-        Text item=TotalKWh_water_heater_meter label="TotalKWh"
-        Text item=TotalCostWaterHeater label="Total cost in Lev"
-        Text item=TotalKWhT1_water_heater_meter label="TotalKWh T1"
-        Text item=TotalKWhT2_water_heater_meter label="TotalKWh T2"
-        Text item=TotalKWhT3_water_heater_meter label="TotalKWh T3"
-        Text item=TotalKWhT4_water_heater_meter label="TotalKWh T4"
-        Text item=Totalkvarh_water_heater_meter label="Totalkvarh"
-        Text item=TotalkvarhT1_water_heater_meter label="Totalkvarh T1"
-        Text item=TotalkvarhT2_water_heater_meter label="Totalkvarh T2"
-        Text item=TotalkvarhT3_water_heater_meter label="Totalkvarh T3"
-        Text item=TotalkvarhT4_water_heater_meter label="Totalkvarh T4"
+        Text item=Meter_Power_water_heater label="103 Power Watts"
+        Text item=Meter_Voltage_water_heater label="VOLTAGE"
+        Text item=Meter_Ampers_water_heater label="Ampers"
+        Text item=Meter_Hz_water_heater label="Line frequency Hz"
+        Text item=Meter_Reactive_power_water_heater label="Reactive_power"
+        Text item=Meter_Apparent_power_water_heater label="Apparent_power"
+        Text item=Meter_Power_factor_water_heater label="Power_factor"
+        Text item=Meter_TotalKWh_water_heater label="TotalKWh"
+        Text item=Meter_TotalCostWaterHeater label="Total cost in Lev"
+        Text item=Meter_TotalKWhT1_water_heater label="TotalKWh T1"
+        Text item=Meter_TotalKWhT2_water_heater label="TotalKWh T2"
+        Text item=Meter_TotalKWhT3_water_heater label="TotalKWh T3"
+        Text item=Meter_TotalKWhT4_water_heater label="TotalKWh T4"
+        Text item=Meter_Totalkvarh_water_heater label="Totalkvarh"
+        Text item=Meter_TotalkvarhT1_water_heater label="Totalkvarh T1"
+        Text item=Meter_TotalkvarhT2_water_heater label="Totalkvarh T2"
+        Text item=Meter_TotalkvarhT3_water_heater label="Totalkvarh T3"
+        Text item=Meter_TotalkvarhT4_water_heater label="Totalkvarh T4"
 
         // Text item=year_month
         // Text item=date_hour
@@ -160,24 +299,24 @@ sitemap default label="My home automation" {
             Frame label="recuperator electric meter 515 - ID:104" {
         // Text item=Date label="Livingroom"
         // Text item=DateDiffFormat label="Livingroo"
-        Text item=Power_recuperator_meter label="104 Power Watts"
-        Text item=Voltage_recuperator_meter label="VOLTAGE"
-        Text item=Ampers_recuperator_meter label="Ampers"
-        Text item=Hz_recuperator_meter label="Line frequency Hz"
-        Text item=Reactive_recuperator_meter label="Reactive_power"
-        Text item=Apparent_recuperator_meter label="Apparent_power"
-        Text item=Power_factor_recuperator_meter label="Power_factor"
-        Text item=TotalKWh_recuperator_meter label="TotalKWh"
-        // Text item=TotalCostWaterHeater label="Total cost in Lev"
-        Text item=TotalKWhT1_recuperator_meter label="TotalKWh T1"
-        Text item=TotalKWhT2_recuperator_meter label="TotalKWh T2"
-        Text item=TotalKWhT3_recuperator_meter label="TotalKWh T3"
-        Text item=TotalKWhT4_recuperator_meter label="TotalKWh T4"
-        Text item=Totalkvarh_recuperator_meter label="Totalkvarh"
-        Text item=TotalkvarhT1_recuperator_meter label="Totalkvarh T1"
-        Text item=TotalkvarhT2_recuperator_meter label="Totalkvarh T2"
-        Text item=TotalkvarhT3_recuperator_meter label="Totalkvarh T3"
-        Text item=TotalkvarhT4_recuperator_meter label="Totalkvarh T4"
+        Text item=Meter_Power_recuperator label="104 Power Watts"
+        Text item=Meter_Voltage_recuperator label="VOLTAGE"
+        Text item=Meter_Ampers_recuperator label="Ampers"
+        Text item=Meter_Hz_recuperator label="Line frequency Hz"
+        Text item=Meter_Reactive_recuperator label="Reactive_power"
+        Text item=Meter_Apparent_recuperator label="Apparent_power"
+        Text item=Meter_Power_factor_recuperator label="Power_factor"
+        Text item=Meter_TotalKWh_recuperator label="TotalKWh"
+        // Text item=Meter_TotalCostWaterHeater label="Total cost in Lev"
+        Text item=Meter_TotalKWhT1_recuperator label="TotalKWh T1"
+        Text item=Meter_TotalKWhT2_recuperator label="TotalKWh T2"
+        Text item=Meter_TotalKWhT3_recuperator label="TotalKWh T3"
+        Text item=Meter_TotalKWhT4_recuperator label="TotalKWh T4"
+        Text item=Meter_Totalkvarh_recuperator label="Totalkvarh"
+        Text item=Meter_TotalkvarhT1_recuperator label="Totalkvarh T1"
+        Text item=Meter_TotalkvarhT2_recuperator label="Totalkvarh T2"
+        Text item=Meter_TotalkvarhT3_recuperator label="Totalkvarh T3"
+        Text item=Meter_TotalkvarhT4_recuperator label="Totalkvarh T4"
 
         // Text item=year_month
         // Text item=date_hour
@@ -191,24 +330,56 @@ sitemap default label="My home automation" {
         Frame label="Solar and HW recirculation pump electric meter 515 - ID:105" {
         // Text item=Date label="Livingroom"
         // Text item=DateDiffFormat label="Livingroo"
-        Text item=Power_soalar_and_hw_recirculation_meter label="105 Power Watts"
-        Text item=Voltage_soalar_and_hw_recirculation_meter label="VOLTAGE"
-        Text item=Ampers_soalar_and_hw_recirculation_meter label="Ampers"
-        Text item=Hz_soalar_and_hw_recirculation_meter label="Line frequency Hz"
-        Text item=Reactive_power_soalar_and_hw_recirculation_meter label="Reactive_power"
-        Text item=Apparent_soalar_and_hw_recirculation_meter label="Apparent_power"
-        Text item=Power_factor_soalar_and_hw_recirculation_meter label="Power_factor"
-        Text item=TotalKWh_soalar_and_hw_recirculation_meter label="TotalKWh"
-        // Text item=TotalCostWaterHeater label="Total cost in Lev"
-        Text item=TotalKWhT1_soalar_and_hw_recirculation_meter label="TotalKWh T1"
-        Text item=TotalKWhT2_soalar_and_hw_recirculation_meter label="TotalKWh T2"
-        Text item=TotalKWhT3_soalar_and_hw_recirculation_meter label="TotalKWh T3"
-        Text item=TotalKWhT4_soalar_and_hw_recirculation_meter label="TotalKWh T4"
-        Text item=Totalkvarh_soalar_and_hw_recirculation_meter label="Totalkvarh"
-        Text item=TotalkvarhT1_soalar_and_hw_recirculation_meter label="Totalkvarh T1"
-        Text item=TotalkvarhT2_soalar_and_hw_recirculation_meter label="Totalkvarh T2"
-        Text item=TotalkvarhT3_soalar_and_hw_recirculation_meter label="Totalkvarh T3"
-        Text item=TotalkvarhT4_soalar_and_hw_recirculation_meter label="Totalkvarh T4"
+        Text item=Meter_Power_soalar_and_hw_recirculation label="105 Power Watts"
+        Text item=Meter_Voltage_soalar_and_hw_recirculation label="VOLTAGE"
+        Text item=Meter_Ampers_soalar_and_hw_recirculation label="Ampers"
+        Text item=Meter_Hz_soalar_and_hw_recirculation label="Line frequency Hz"
+        Text item=Meter_Reactive_soalar_and_hw_recirculation label="Reactive_power"
+        Text item=Meter_Apparent_soalar_and_hw_recirculation label="Apparent_power"
+        Text item=Meter_Power_factor_soalar_and_hw_recirculation label="Power_factor"
+        Text item=Meter_TotalKWh_soalar_and_hw_recirculation label="TotalKWh"
+        // Text item=Meter_TotalCostWaterHeater label="Total cost in Lev"
+        Text item=Meter_TotalKWhT1_soalar_and_hw_recirculation label="TotalKWh T1"
+        Text item=Meter_TotalKWhT2_soalar_and_hw_recirculation label="TotalKWh T2"
+        Text item=Meter_TotalKWhT3_soalar_and_hw_recirculation label="TotalKWh T3"
+        Text item=Meter_TotalKWhT4_soalar_and_hw_recirculation label="TotalKWh T4"
+        Text item=Meter_Totalkvarh_soalar_and_hw_recirculation label="Totalkvarh"
+        Text item=Meter_TotalkvarhT1_soalar_and_hw_recirculation label="Totalkvarh T1"
+        Text item=Meter_TotalkvarhT2_soalar_and_hw_recirculation label="Totalkvarh T2"
+        Text item=Meter_TotalkvarhT3_soalar_and_hw_recirculation label="Totalkvarh T3"
+        Text item=Meter_TotalkvarhT4_soalar_and_hw_recirculation label="Totalkvarh T4"
+
+        // Text item=year_month
+        // Text item=date_hour
+        // Text item=min_sec
+        // Text item=not_defined
+
+        // Text item=year_month_tst
+        // Text item=date_hour_tst
+
+    }
+
+
+        Frame label="Well pump electric meter 515 - ID:106" {
+        // Text item=Date label="Livingroom"
+        // Text item=DateDiffFormat label="Livingroo"
+        Text item=Meter_Power_well_pump label="106 Power Watts"
+        Text item=Meter_Voltage_well_pump label="VOLTAGE"
+        Text item=Meter_Ampers_well_pump label="Ampers"
+        Text item=Meter_Hz_well_pump label="Line frequency Hz"
+        Text item=Meter_Reactive_well_pump label="Reactive_power"
+        Text item=Meter_Apparent_well_pump label="Apparent_power"
+        Text item=Meter_Power_factor_well_pump label="Power_factor"
+        Text item=Meter_TotalKWh_well_pump label="TotalKWh"
+        Text item=Meter_TotalKWhT1_well_pump label="TotalKWh T1"
+        Text item=Meter_TotalKWhT2_well_pump label="TotalKWh T2"
+        Text item=Meter_TotalKWhT3_well_pump label="TotalKWh T3"
+        Text item=Meter_TotalKWhT4_well_pump label="TotalKWh T4"
+        Text item=Meter_Totalkvarh_well_pump label="Totalkvarh"
+        Text item=Meter_TotalkvarhT1_well_pump label="Totalkvarh T1"
+        Text item=Meter_TotalkvarhT2_well_pump label="Totalkvarh T2"
+        Text item=Meter_TotalkvarhT3_well_pump label="Totalkvarh T3"
+        Text item=Meter_TotalkvarhT4_well_pump label="Totalkvarh T4"
 
         // Text item=year_month
         // Text item=date_hour

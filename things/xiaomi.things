@@ -1,0 +1,29 @@
+Bridge mihome:bridge:7811dcfd6181 "Xiaomi Gateway" [ serialNumber="7811dcfd6181", ipAddress="192.168.1.119", port=9898, key="rpw5fz16wktqp5ah", pollingInterval=6000 ] {
+  Things:
+    gateway 7811dcfd6181 "Xiaomi Mi Smart Home Gateway" [itemId="7811dcfd6181"]
+    sensor_plug         158d000245ceae  "Xiaomi Plug"       [itemId="158d000245ceae"]
+    sensor_magnet       158d000231cd44  "Xiaomi Magnet"     [itemId="158d000231cd44"]
+    sensor_motion       158d00024e966a  "Xiaomi Motion"     [itemId="158d00024e966a"]
+    sensor_motion       158d000222ee2f  "Xiaomi Motion"     [itemId="158d000222ee2f"]
+    sensor_motion       158d000222eff4  "Xiaomi Motion"     [itemId="158d000222eff4"]
+    sensor_motion       158d0002119e8d  "Xiaomi Motion"     [itemId="158d0002119e8d"]
+    sensor_switch       158d00024dc2db  "Xiaomi Switch"     [itemId="158d00024dc2db"]
+    sensor_switch       158d0001f9f27f  "Xiaomi Switch"     [itemId="158d0001f9f27f"]
+    sensor_weather_v1   158d00036c13a7  "Xiaomi Weather"    [itemId="158d00036c13a7"]
+    sensor_weather_v1   158d00036c1313  "Xiaomi Weather"    [itemId="158d00036c1313"]
+    sensor_weather_v1   158d00036c132b  "Xiaomi Weather"    [itemId="158d00036c132b"]
+    sensor_weather_v1   158d00036c1301  "Xiaomi Weather"    [itemId="158d00036c1301"]
+    sensor_weather_v1   158d00036c12c6  "Xiaomi Weather"    [itemId="158d00036c12c6"]
+    sensor_weather_v1   158d00036c1397  "Xiaomi Weather"    [itemId="158d00036c1397"]
+
+
+
+    // EXAMPLES:
+    // sensor_ht 158d0001XXXXXX "Xiaomi Temperature Sensor" [itemId="158d0001XXXXXX"]
+    // sensor_weather_v1 158d0001XXXXXX "Xiaomi Aqara Temp, Hum and Press Sensor" [itemId="158d0001XXXXXX"]
+    // sensor_motion 158d0001XXXXXX "Xiaomi Motion Sensor" [itemId="158d0001XXXXXX"]
+    // sensor_plug 158d0001XXXXXX "Xiaomi Plug" [itemId="158d0001XXXXXX"]
+    // sensor_magnet 158d0001XXXXXX "Xiaomi Door Sensor" [itemId="158d0001XXXXXX"]
+    // sensor_switch 158d0001XXXXXX "Xiaomi Mi Wireless Switch" [itemId="158d0001XXXXXX"]
+    // 86sw2 158d0001XXXXXX "Aqara Wireless Wall Switch" [itemId="158d0001XXXXXX"]
+}

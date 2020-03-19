@@ -55,8 +55,8 @@ Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secu
     Thing topic ardu_m_heating_temp_hum "Ardunino Mega Heating room Sensors controler" @ "House" {
     Channels:
         Type string : reachable             "Reachable"                         [ stateTopic="tele/ardu_m_heating_temp_hum/LWT"]
-        // Type number : temp_solar_col        "TEMPERATURE_SOLAR_COLLECTOR"       [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28192D94970E0344"]
-        // Type number : temp_outside_roof     "TEMPERATURE_OUTSIDE_ROOF"          [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28642594970E03A8"]
+        Type number : temp_solar_col        "TEMPERATURE_SOLAR_COLLECTOR"       [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_288A03949708035C"]
+        Type number : temp_outside_roof     "TEMPERATURE_OUTSIDE_ROOF"          [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_28FB0E5F060000A5"]
         // Type number : temp_1                "TEMPERATURE_1"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_288A03949708035C"]
         // Type number : temp_2                "TEMPERATURE_2"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_2828229497120350"]
         // Type number : temp_3                "TEMPERATURE_3"                     [ stateTopic="tele/ardu_m_heating_temp_hum/SENSOR", transformationPattern="JSONPATH:$.DS18B20_281E5894970E037E"]

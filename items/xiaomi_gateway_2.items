@@ -1,0 +1,14 @@
+// // Xiaomi MI Gateway 2
+
+Group gXiaomiGateway2
+
+Switch  XGW_Gateway2_EnableInclusion    "Enable Device Inclusion"   (gXiaomiGateway2) { channel="mihome:gateway:7811dcfd6181:7811dcfd6181:joinPermission" }
+ 
+Switch  XGW_Gateway2_LightSwitch         <light>             (gXiaomiGateway2) { channel="mihome:gateway:7811dcfd6181:7811dcfd6181:brightness" }
+Dimmer  XGW_Gateway2_Brightness          <dimmablelight>     (gXiaomiGateway2)   { channel="mihome:gateway:7811dcfd6181:7811dcfd6181:brightness" }
+Color   XGW_Gateway2_Color               <rgb>               (gXiaomiGateway2) { channel="mihome:gateway:7811dcfd6181:7811dcfd6181:color" }
+Dimmer  XGW_Gateway2_ColorTemperature    <heating>           (gXiaomiGateway2) { channel="mihome:gateway:7811dcfd6181:7811dcfd6181:colorTemperature" }
+Number  XGW_Gateway2_AmbientLight        <sun>               (gXiaomiGateway2) { channel="mihome:gateway:7811dcfd6181:7811dcfd6181:illumination" }
+Number  XGW_Gateway2_Sound               <soundvolume-0>     (gXiaomiGateway2) { channel="mihome:gateway:7811dcfd6181:7811dcfd6181:sound" }
+Switch  XGW_Gateway2_SoundSwitch         <soundvolume_mute>  (gXiaomiGateway2) { channel="mihome:gateway:7811dcfd6181:7811dcfd6181:enableSound" }
+Dimmer  XGW_Gateway2_SoundVolume         <soundvolume>       (gXiaomiGateway2) { channel="mihome:gateway:7811dcfd6181:7811dcfd6181:volume" }
