@@ -1,0 +1,73 @@
+Group gGF           "Ground Floor"  <groundfloor>   ["GroundFloor"]
+Group Garden        "Garden"        <garden>        ["Garden"]
+Group Presence      "Presence"     <presence>     ["Presence"]
+Group HeatingCooling      "Heating and Cooling"     <presence>     ["HeatingCooling"]
+
+Group GF_Living     "Living Room"   <video>     (gGF)   ["LivingRoom"]
+
+/* active groups */
+Group:Switch:OR(ON, OFF)        Lights      "All Lights [(%d)]"
+
+// // * Sonoff TH16 * //
+
+
+// // TH16 with DS18B20 sensor
+Group  GF_Sonoff_TH16_6             "КЪЩА: Sonoff TH16 6 офис"                         <group>       (Sonoff_TH16_6)
+String GF_Sonoff_TH16_6_Reachable   "TH16_6 Reachable: [%s]"                <presence>    (GF_Sonoff_TH16_6)                                  { channel="mqtt:topic:MyMQTTthing:sonoff_th16_6:reachable" }
+Switch GF_Sonoff_TH16_6_Power       "TH16_6 Power"                          <switch>      (GF_Sonoff_TH16_6, Gr_ALL_POWER) ["Switchable"]        { channel="mqtt:topic:MyMQTTthing:sonoff_th16_6:power" }       
+Number GF_Sonoff_TH16_6_Temperature "TH16_6 Temperature [%.1f °C]"          <temperature> (GF_Sonoff_TH16_6, Gr_Temperature_measurments, GF_OF_Temperature)      { channel="mqtt:topic:MyMQTTthing:sonoff_th16_6:temperature" }
+Number GF_Sonoff_TH16_6_RSSI        "TH16_6 WiFi Signal Strength [%d %%]"   <network>     (GF_Sonoff_TH16_6)                                  { channel="mqtt:topic:MyMQTTthing:sonoff_th16_6:rssi" }
+
+
+// // * Sonoff 4 channel * //
+
+
+// // * Sonoff POW * //
+
+Group  GF_OF_sonoff_pow_2           "КЪЩА: Sonoff POW 2"                      <sonoff_pow>          (Sonoff_POW_2)
+String GF_OF_sonoff_pow_2_Reachable "Reachable: [%s]"                   <contactable>   (GF_OF_sonoff_pow_2)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_2:reachable" }
+Switch GF_OF_sonoff_pow_2_Power     "POW_2 POWER"                       <switch>        (GF_OF_sonoff_pow_2, Gr_Persist_State_On_Statup, Gr_ALL_POWER)["Switchable"]{ channel="mqtt:topic:MyMQTTthing:sonoff_pow_2:power" }
+Number GF_OF_sonoff_pow_2_Load      "Power load [%.1f W]"               <voltage>       (GF_OF_sonoff_pow_2)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_2:powerload" }
+Number GF_OF_sonoff_pow_2_Voltage   "Line voltage [%.1f V]"             <voltage>       (GF_OF_sonoff_pow_2)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_2:voltage" }
+Number GF_OF_sonoff_pow_2_Current   "Line current [%.3f A]"             <current>       (GF_OF_sonoff_pow_2)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_2:current" }
+Number GF_OF_sonoff_pow_2_Today     "Total energy today [%.3f kWh]"     <total_energy>  (GF_OF_sonoff_pow_2)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_2:totaltoday" }
+Number GF_OF_sonoff_pow_2_Yesterday "Total energy yesterday [%.3f kWh]" <total_energy>  (GF_OF_sonoff_pow_2)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_2:totalyest" }
+Number GF_OF_sonoff_pow_2_Total     "Total energy from start [%.3f kWh]"<total_energy>  (GF_OF_sonoff_pow_2)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_2:total" }
+Number GF_OF_sonoff_pow_2_RSSI      "WiFi Signal Strength [%d %%]"      <wifi>          (GF_OF_sonoff_pow_2)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_2:rssi" }
+
+Group  GF_OF_sonoff_pow_3           "КЪЩА: Sonoff POW 3"                        <sonoff_pow>        (Sonoff_POW_3)
+String GF_OF_sonoff_pow_3_Reachable "Reachable: [%s]"                   <contactable>   (GF_OF_sonoff_pow_3)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_3:reachable" }
+Switch GF_OF_sonoff_pow_3_Power     "POW_3 POWER"                       <switch>        (GF_OF_sonoff_pow_3, Gr_Persist_State_On_Statup, Gr_ALL_POWER)["Switchable"]{ channel="mqtt:topic:MyMQTTthing:sonoff_pow_3:power" }
+Number GF_OF_sonoff_pow_3_Load      "Power load [%.1f W]"               <voltage>       (GF_OF_sonoff_pow_3)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_3:powerload" }
+Number GF_OF_sonoff_pow_3_Voltage   "Line voltage [%.1f V]"             <voltage>       (GF_OF_sonoff_pow_3)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_3:voltage" }
+Number GF_OF_sonoff_pow_3_Current   "Line current [%.3f A]"             <current>       (GF_OF_sonoff_pow_3)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_3:current" }
+Number GF_OF_sonoff_pow_3_Today     "Total energy today [%.3f kWh]"     <total_energy>  (GF_OF_sonoff_pow_3)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_3:totaltoday" }
+Number GF_OF_sonoff_pow_3_Yesterday "Total energy yesterday [%.3f kWh]" <total_energy>  (GF_OF_sonoff_pow_3)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_3:totalyest" }
+Number GF_OF_sonoff_pow_3_Total     "Total energy from start [%.3f kWh]"<total_energy>  (GF_OF_sonoff_pow_3)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_3:total" }
+Number GF_OF_sonoff_pow_3_RSSI      "WiFi Signal Strength [%d %%]"      <wifi>          (GF_OF_sonoff_pow_3)                            { channel="mqtt:topic:MyMQTTthing:sonoff_pow_3:rssi" }
+
+
+// // * Sonoff S26 outlets * //
+
+
+//     // BENKOVSKI sonoff S26 OUTLET
+
+Group  GF_Sonoff_S26_3           "КЪЩА: Sonoff S26" <group> //(Sonoff_S26_3)
+String GF_Sonoff_S26_3_Reachable "Reachable: [%s]"                   <contactable>  (GF_Sonoff_S26_3) { channel="mqtt:topic:MyMQTTthing:s26_3_power_outlet:reachable" }
+Switch GF_Sonoff_S26_3_Power     "S26_3_Power Лампа Офис Стена"                <switch>       (GF_Sonoff_S26_3, Gr_ALL_POWER) { channel="mqtt:topic:MyMQTTthing:s26_3_power_outlet:power" }       
+Number GF_Sonoff_S26_3_RSSI      "WiFi Signal Strength [%d %%]"      <wifi>         (GF_Sonoff_S26_3) { channel="mqtt:topic:MyMQTTthing:s26_3_power_outlet:rssi" }
+
+// // * Sonoff S20 outlets * //
+
+//     // BENKOVSKI sonoff S20 OUTLET
+Group  GF_Sonoff_S20_1           "КЪЩА: Sonoff S20" <group> //(Sonoff_S20_1)
+String GF_Sonoff_S20_1_Reachable "Reachable: [%s]"                   <contactable>  (GF_Sonoff_S20_1)               { channel="mqtt:topic:MyMQTTthing:s20_1_power_outlet:reachable" }
+Switch GF_Sonoff_S20_1_Power     "Sonoff_S20_1_Power"                <switch>       (GF_Sonoff_S20_1, Gr_ALL_POWER) { channel="mqtt:topic:MyMQTTthing:s20_1_power_outlet:power" }       
+Number GF_Sonoff_S20_1_RSSI      "WiFi Signal Strength [%d %%]"      <wifi>         (GF_Sonoff_S20_1)               { channel="mqtt:topic:MyMQTTthing:s20_1_power_outlet:rssi" }
+
+
+// // * Sonoff RF Bridge * //
+
+/* RF Bridge */
+// https://iot.formatx.net/sonoff-bridge-openhab/
+

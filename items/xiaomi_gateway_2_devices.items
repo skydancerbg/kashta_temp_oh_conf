@@ -94,49 +94,49 @@ Switch XiGW2_Xiaomi_Switch_2_BatteryLow <energy> (gXiGW2_mia_wireless_switch_2, 
 // Humidity Range and Precision: 0 – 100% RH (non-condensing), ±3%
 // Atmospheric Pressure Range and Precision: 30 kPa – 110 kPa, ±0.12 kPa
 
-// // // ???????? TEMPERATURE
+// // // ВЪНШНА TEMPERATURE
 Group gMIGW2_XA_THP_sensor_1
-Number:Temperature      XGW2_XA_THP_1_Temperature   <temperature>  (gMIGW2_XA_THP_sensor_1,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_1_Temperature   "ТЕМПЕРАТУРА ВЪНШНА"  <temperature>  (gMIGW2_XA_THP_sensor_1,Gr_Temperature_measurments,Gr_House_Outside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_1_Humidity      <humidity>     (gMIGW2_XA_THP_sensor_1) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:humidity" }
 Number:Pressure         XGW2_XA_THP_1_Pressure      <pressure>     (gMIGW2_XA_THP_sensor_1) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:pressure" }
 Number                  XGW2_XA_THP_1_Battery       <battery>      (gMIGW2_XA_THP_sensor_1, gAllBatteryLevel) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:batteryLevel" }
 Switch                  XGW2_XA_THP_1_BatteryLow    <energy>       (gMIGW2_XA_THP_sensor_1, gAllLowBattery) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c13a7:lowBattery" }
 
-// // // ???????? TEMPERATURE
+// // // РАБОТИЛНИЦА TEMPERATURE
 Group gMIGW2_XA_THP_sensor_2
-Number:Temperature      XGW2_XA_THP_2_Temperature     <temperature>  (gMIGW2_XA_THP_sensor_2,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_2_Temperature     "ТЕМПЕРАТУРА РАБОТИЛНИЦА" <temperature>  (gMIGW2_XA_THP_sensor_2,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_2_Humidity        <humidity>     (gMIGW2_XA_THP_sensor_2) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:humidity" }
 Number:Pressure         XGW2_XA_THP_2_Pressure        <pressure>     (gMIGW2_XA_THP_sensor_2) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:pressure" }
 Number                  XGW2_XA_THP_2_Battery         <battery>      (gMIGW2_XA_THP_sensor_2, gAllBatteryLevel) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:batteryLevel" }
 Switch                  XGW2_XA_THP_2_BatteryLow      <energy>       (gMIGW2_XA_THP_sensor_2, gAllLowBattery) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1313:lowBattery" }
 
-// // // ???????? TEMPERATURE
+// // // КОРИДОР 2Т.1 TEMPERATURE
 Group gMIGW2_XA_THP_sensor_3
-Number:Temperature      XGW2_XA_THP_3_Temperature     <temperature>  (gMIGW2_XA_THP_sensor_3,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c132b:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_3_Temperature     "ТЕМПЕРАТУРА КОРИДОР ЕТ.1"  <temperature>  (gMIGW2_XA_THP_sensor_3,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c132b:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_3_Humidity        <humidity>     (gMIGW2_XA_THP_sensor_3) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c132b:humidity" }
 Number:Pressure         XGW2_XA_THP_3_Pressure        <pressure>     (gMIGW2_XA_THP_sensor_3) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c132b:pressure" }
 Number                  XGW2_XA_THP_3_Battery         <battery>      (gMIGW2_XA_THP_sensor_3, gAllBatteryLevel) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c132b:batteryLevel" }
 Switch                  XGW2_XA_THP_3_BatteryLow      <energy>       (gMIGW2_XA_THP_sensor_3, gAllLowBattery) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c132b:lowBattery" }
 
-// // // ???????? TEMPERATURE
+// // // ОФИС TEMPERATURE
 Group gMIGW2_XA_THP_sensor_4
-Number:Temperature      XGW2_XA_THP_4_Temperature     <temperature>  (gMIGW2_XA_THP_sensor_4,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1301:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_4_Temperature     "ТЕМПЕРАТУРА ОФИС"  <temperature>  (gMIGW2_XA_THP_sensor_4,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1301:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_4_Humidity        <humidity>     (gMIGW2_XA_THP_sensor_4) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1301:humidity" }
 Number:Pressure         XGW2_XA_THP_4_Pressure        <pressure>     (gMIGW2_XA_THP_sensor_4) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1301:pressure" }
 Number                  XGW2_XA_THP_4_Battery         <battery>      (gMIGW2_XA_THP_sensor_4, gAllBatteryLevel) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1301:batteryLevel" }
 Switch                  XGW2_XA_THP_4_BatteryLow      <energy>       (gMIGW2_XA_THP_sensor_4, gAllLowBattery) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1301:lowBattery" }
 
-// // // ???????? TEMPERATURE
+// // // ХОЛ TEMPERATURE ----------------USING THIS TEMPERATURE FOR HEATING TEST VIA GROUP Gr_HS_AVERAGE_HEATING_COOLING_Temperature
 Group gMIGW2_XA_THP_sensor_5
-Number:Temperature      XGW2_XA_THP_5_Temperature     <temperature>  (gMIGW2_XA_THP_sensor_5,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c12c6:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_5_Temperature     "ТЕМПЕРАТУРА ХОЛ"  <temperature>  (gMIGW2_XA_THP_sensor_5,Gr_HS_AVERAGE_HEATING_COOLING_Temperature,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c12c6:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_5_Humidity        <humidity>     (gMIGW2_XA_THP_sensor_5) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c12c6:humidity" }
 Number:Pressure         XGW2_XA_THP_5_Pressure        <pressure>     (gMIGW2_XA_THP_sensor_5) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c12c6:pressure" }
 Number                  XGW2_XA_THP_5_Battery         <battery>      (gMIGW2_XA_THP_sensor_5, gAllBatteryLevel) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c12c6:batteryLevel" }
 Switch                  XGW2_XA_THP_5_BatteryLow      <energy>       (gMIGW2_XA_THP_sensor_5, gAllLowBattery) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c12c6:lowBattery" }
 
-// // // ???????? TEMPERATURE
+// // // ЕТ.3 TEMPERATURE
 Group gMIGW2_XA_THP_sensor_6
-Number:Temperature      XGW2_XA_THP_6_Temperature     <temperature>  (gMIGW2_XA_THP_sensor_6,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1397:temperature" }                                                                                                                                         
+Number:Temperature      XGW2_XA_THP_6_Temperature     "ТЕМПЕРАТУРА 3-ТИ ЕТАЖ"  <temperature>  (gMIGW2_XA_THP_sensor_6,Gr_Temperature_measurments,Gr_House_Inside_Temperature) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1397:temperature" }                                                                                                                                         
 Number:Dimensionless    XGW2_XA_THP_6_Humidity        <humidity>     (gMIGW2_XA_THP_sensor_6) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1397:humidity" }
 Number:Pressure         XGW2_XA_THP_6_Pressure        <pressure>     (gMIGW2_XA_THP_sensor_6) { channel="mihome:sensor_weather_v1:7811dcfd6181:158d00036c1397:pressure" }
 Number                  XGW2_XA_THP_6_Battery         <battery>      (gMIGW2_XA_THP_sensor_6, gAllBatteryLevel) { channel="mihome:7811dcfd6181:sensor_weather_v1:158d00036c1397:batteryLevel" }

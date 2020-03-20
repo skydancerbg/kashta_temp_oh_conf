@@ -1,0 +1,175 @@
+
+// HOME OFFICE HEATING RELATED:
+rule "Update ALL UNDERFLOOR HEATING TEST"
+
+when
+	Item HeatingCoolingSwitch received update or 
+	Item HOUSE_UF_All_Heating_Setpoint received update or 
+	Item Gr_HS_AVERAGE_HEATING_COOLING_Temperature received update or 
+    // Item Heating_ON_OFF changed or
+    Item HOUSE_UF_All_Heating_Enable changed
+then
+            
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+            // logInfo("heating_temp_minus_1", ((GF_OF_Heating_Setpoint.state as Number)-1.0).toString)
+
+        //    logInfo("heating_setpoint_temp prЕdi if!!!!!!!", HeatingCoolingSwitch.state.toString)
+
+
+    if(((Gr_HS_AVERAGE_HEATING_COOLING_Temperature.state as Number)< (HOUSE_UF_All_Heating_Setpoint.state as Number)-1.0 ) && (HeatingCoolingSwitch.state as Number) == 1.0  && HOUSE_UF_All_Heating_Enable.state == ON) {
+    // if(((GF_Sonoff_TH16_6_Temperature.state as Number)< (GF_OF_Heating_Setpoint.state as Number)-1.0 ) && Heating_ON_OFF.state == ON  && GF_OF_Heating_Enable.state == ON) {
+
+        logInfo("heating HOUSE", "temperaturata e po-malka ot setpointa ИЛИ КОМАНДА ВКЛ ИЗКЛ")
+
+
+        // logInfo("heating GF_OF_sonoff_pow_2_Power", GF_OF_sonoff_pow_2_Power.state.toString)
+        // logInfo("heating GF_OF_sonoff_pow_2_Power", GF_OF_sonoff_pow_3_Power.state.toString)
+		if(Gr_HS_UF_ACTUATORS.state == OFF) {
+                     logInfo("heating HOUSE", "komanda pow2 on")
+
+            Gr_HS_UF_ACTUATORS.sendCommand(ON)
+            HOUSE_UF_All_Heating.sendCommand(ON)
+        }
+	}else if (((Gr_HS_AVERAGE_HEATING_COOLING_Temperature.state as Number) >= (HOUSE_UF_All_Heating_Setpoint.state as Number)) || (HeatingCoolingSwitch.state  as Number) == 0 || (HeatingCoolingSwitch.state  as Number) == 2.0 || HOUSE_UF_All_Heating_Enable.state == OFF)
+	// }else if (((GF_Sonoff_TH16_6_Temperature.state as Number) >= (GF_OF_Heating_Setpoint.state as Number)) || Heating_ON_OFF.state == OFF  || GF_OF_Heating_Enable.state == OFF)
+    {
+        logInfo("heating office", "temperaturata e po-goliama ot setpointa ИЛИ КОМАНДА OFF")
+		
+         if(Gr_HS_UF_ACTUATORS.state == ON ) {
+                    // logInfo("heating", "komanda OFF")
+            Gr_HS_UF_ACTUATORS.sendCommand(OFF)
+                    Thread::sleep(1000)
+        }
+        if(Gr_HS_UF_ACTUATORS.state == OFF) {
+                    logInfo("Gr_HS_UF_ACTUATORS WHEN RECEIVED TURN OFF OR TEMP DIFFERENCE", "komanda OFF")
+            HOUSE_UF_All_Heating.sendCommand(OFF)
+        }
+      
+    }
+
+end
+
+
+// HOME OFFICE HEATING RELATED:
+rule "Update Home office Heating"
+
+when
+	Item HeatingCoolingSwitch received update or 
+	Item GF_OF_Heating_Setpoint received update or 
+	Item GF_Sonoff_TH16_6_Temperature received update or 
+    // Item Heating_ON_OFF changed or
+    Item GF_OF_Heating_Enable changed
+then
+            
+            // logInfo("heating_current_temp", GF_Sonoff_TH16_6_Temperature.state.toString)
+            // logInfo("heating_temp_minus_1", ((GF_OF_Heating_Setpoint.state as Number)-1.0).toString)
+
+        //    logInfo("heating_setpoint_temp prЕdi if!!!!!!!", HeatingCoolingSwitch.state.toString)
+
+
+    if(((GF_Sonoff_TH16_6_Temperature.state as Number)< (GF_OF_Heating_Setpoint.state as Number)-1.0 ) && (HeatingCoolingSwitch.state as Number) == 1.0  && GF_OF_Heating_Enable.state == ON) {
+    // if(((GF_Sonoff_TH16_6_Temperature.state as Number)< (GF_OF_Heating_Setpoint.state as Number)-1.0 ) && Heating_ON_OFF.state == ON  && GF_OF_Heating_Enable.state == ON) {
+
+        logInfo("heating office", "temperaturata e po-malka ot setpointa ИЛИ КОМАНДА ВКЛ ИЗКЛ")
+
+
+        // logInfo("heating GF_OF_sonoff_pow_2_Power", GF_OF_sonoff_pow_2_Power.state.toString)
+        // logInfo("heating GF_OF_sonoff_pow_2_Power", GF_OF_sonoff_pow_3_Power.state.toString)
+		if(GF_OF_sonoff_pow_2_Power.state == OFF || GF_OF_sonoff_pow_2_Power.state == UNDEF) {
+                     logInfo("heating office", "komanda pow2 on")
+
+            GF_OF_sonoff_pow_2_Power.sendCommand(ON)
+            GF_OF_Heating.sendCommand(ON)
+        }
+        if(GF_OF_sonoff_pow_3_Power.state == OFF || GF_OF_sonoff_pow_3_Power.state == UNDEF) {
+                    logInfo("heating office", "komanda pow3 on")
+            Thread::sleep(2000) // Пусни втория калорифер след 2 секунди
+            GF_OF_sonoff_pow_3_Power.sendCommand(ON)
+            GF_OF_Heating.sendCommand(ON)
+        }
+	}else if (((GF_Sonoff_TH16_6_Temperature.state as Number) >= (GF_OF_Heating_Setpoint.state as Number)) || (HeatingCoolingSwitch.state  as Number) == 0 || (HeatingCoolingSwitch.state  as Number) == 2.0 || GF_OF_Heating_Enable.state == OFF)
+	// }else if (((GF_Sonoff_TH16_6_Temperature.state as Number) >= (GF_OF_Heating_Setpoint.state as Number)) || Heating_ON_OFF.state == OFF  || GF_OF_Heating_Enable.state == OFF)
+    {
+        logInfo("heating office", "temperaturata e po-goliama ot setpointa ИЛИ КОМАНДА OFF")
+		
+         if(GF_OF_sonoff_pow_2_Power.state == ON || GF_OF_sonoff_pow_2_Power.state == UNDEF || GF_OF_sonoff_pow_3_Power.state == ON  || GF_OF_sonoff_pow_3_Power.state == UNDEF) {
+                    // logInfo("heating", "komanda OFF")
+            GF_OF_sonoff_pow_2_Power.sendCommand(OFF)
+            GF_OF_sonoff_pow_3_Power.sendCommand(OFF)
+                    Thread::sleep(1000)
+        }
+        if(GF_OF_sonoff_pow_2_Power.state == OFF && GF_OF_sonoff_pow_3_Power.state == OFF) {
+                    logInfo("GF_OF_Heating-WHEN RECEIVED PECHKI OFF OR TEMP DIFFERENCE", "komanda OFF")
+            GF_OF_Heating.sendCommand(OFF)
+        }
+        // logInfo("heating office", "temperaturata e po-goliama ot setpointa ИЛИ КОМАНДА OFF")
+		
+        //  if(GF_OF_sonoff_pow_2_Power.state == ON || GF_OF_sonoff_pow_2_Power.state == UNDEF) {
+        //             // logInfo("heating", "komanda OFF")
+        //     GF_OF_sonoff_pow_2_Power.sendCommand(OFF)
+        // }
+        // if(GF_OF_sonoff_pow_3_Power.state == ON  || GF_OF_sonoff_pow_3_Power.state == UNDEF) {
+        //             // logInfo("heating", "komanda OFF")
+        //     GF_OF_sonoff_pow_3_Power.sendCommand(OFF)
+        // }
+        // if(GF_OF_sonoff_pow_2_Power.state == OFF && GF_OF_sonoff_pow_3_Power.state == OFF) {
+        //             logInfo("GF_OF_Heating-WHEN RECEIVED PECHKI OFF OR TEMP DIFFERENCE", "komanda OFF")
+        //             Thread::sleep(1000)
+        //     GF_OF_Heating.sendCommand(OFF)
+        // }
+      
+    }
+
+end
+
+
+// rule "Heating ON/OFF set to OFF"
+
+// when
+// 	Item Heating_ON_OFF received command OFF or
+//     Item GF_OF_Heating_Enable received command OFF
+
+// then
+//     // if( Heating_ON_OFF.state == OFF || GF_OF_Heating_Enable.state == OFF) {
+//         logInfo("heating", "testtttttttttt")
+
+// 		if(GF_OF_sonoff_pow_2_Power.state == ON || GF_OF_sonoff_pow_2_Power.state == UNDEF) {
+//                      logInfo("heating", " POW2komanda OFF")
+//             GF_OF_sonoff_pow_2_Power.sendCommand(OFF)
+//         }
+//         if(GF_OF_sonoff_pow_3_Power.state == ON || GF_OF_sonoff_pow_2_Power.state == UNDEF) {
+//                     logInfo("heating", "POW3 komanda OFF")
+//             GF_OF_sonoff_pow_3_Power.sendCommand(OFF)
+//         }
+//         if(GF_OF_sonoff_pow_2_Power.state == OFF && GF_OF_sonoff_pow_3_Power.state == OFF) {
+//                     // logInfo("heating", "komanda OFF")
+//             GF_OF_Heating.sendCommand(OFF)
+//         }
+
+//     // }
+// end
+
+// rule "Heating/cooling 3state switch"
+// when
+//     Item HeatingCoolingSwitch changed
+// then
+// // logInfo("HeatingCoolingSwitch", HeatingCoolingSwitch.state.toString)
+//     switch (HeatingCoolingSwitch.state as DecimalType) {
+//         case 0 : {
+
+//             // logInfo("HeatingCoolingSwitch", "Is 0")
+//             Heating_ON_OFF.sendCommand(OFF)
+//             Cooling_ON_OFF.sendCommand(OFF)
+//         }
+//         case 1 : {
+//             // logInfo("HeatingCoolingSwitch", "Is 1")
+//             Heating_ON_OFF.sendCommand(ON)
+//             Cooling_ON_OFF.sendCommand(OFF)
+//         }
+//         case 2 : {
+//             // logInfo("HeatingCoolingSwitch", "Is 2")
+//             Heating_ON_OFF.sendCommand(OFF)
+//             Cooling_ON_OFF.sendCommand(ON)
+//         }
+//     }
+// end

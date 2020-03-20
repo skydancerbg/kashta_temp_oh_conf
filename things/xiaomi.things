@@ -1,6 +1,6 @@
 Bridge mihome:bridge:7811dcfd6181 "Xiaomi Gateway" [ serialNumber="7811dcfd6181", ipAddress="192.168.1.119", port=9898, key="rpw5fz16wktqp5ah", pollingInterval=6000 ] {
   Things:
-    gateway 7811dcfd6181 "Xiaomi Mi Smart Home Gateway" [itemId="7811dcfd6181"]
+    gateway             7811dcfd6181    "Xiaomi Mi Smart Home Gateway" [itemId="7811dcfd6181"]
     sensor_plug         158d000245ceae  "Xiaomi Plug"       [itemId="158d000245ceae"]
     sensor_magnet       158d000231cd44  "Xiaomi Magnet"     [itemId="158d000231cd44"]
     sensor_motion       158d00024e966a  "Xiaomi Motion"     [itemId="158d00024e966a"]

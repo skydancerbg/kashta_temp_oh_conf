@@ -1,27 +1,24 @@
 
-Group:Number:SUM     Gr_HR_ACTIVE_POWER   "МОМЕНТНА КОНСУМАЦИЯ ОВИ И БГВ (ОБЩО)   [% d W]" <electric_meter>
-Group:Number:SUM     Gr_HR_Total_KWh   "ОВИ И БГВ - КОНСУМИРАНИ ДО МОМЕНТА:  [%.2f KWh]" <electric_meter>
+// // НАЧАЛНА ДАТА НА ОТЧИТАНЕТО СОЛАР И БГВ 14.03.2020 
+// // НАЧАЛНА ДАТА НА ОТЧИТАНЕТО ТЕРМОПОМПА ??.??.2020
+// // НАЧАЛНА ДАТА НА ОТЧИТАНЕТО РЕКУПЕРТОР ??.??.2020
 
-
-
-
-
-
+// ТЕРМОПОМПА
 Number Meter_Voltage_L1_heat_pump           "Voltage L1 [% .2f V]"          <energy>                                    { channel="modbus:data:energy_metters_slave102:volt:V_L1:number" }
 Number Meter_Voltage_L2_heat_pump           "Voltage L2 [% .2f V]"          <energy>                                    { channel="modbus:data:energy_metters_slave102:volt:V_L2:number" }
 Number Meter_Voltage_L3_heat_pump           "Voltage L3 [% .2f V]"          <energy>                                    { channel="modbus:data:energy_metters_slave102:volt:V_L3:number" }
 Number Meter_Ampers_L1_heat_pump            "Ampers  L1 [% .2f A]"          <energy>                                    { channel="modbus:data:energy_metters_slave102:ampers:A_L1:number" }
 Number Meter_Ampers_L2_heat_pump            "Ampers  L2 [% .2f A]"          <energy>                                    { channel="modbus:data:energy_metters_slave102:ampers:A_L2:number" }
 Number Meter_Ampers_L3_heat_pump            "Ampers  L3 [% .2f A]"          <energy>                                    { channel="modbus:data:energy_metters_slave102:ampers:A_L3:number" }
-Number Meter_Total_Active_Power_heat_pump   "Watts      [% d W]"            <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave102:total_active_power:aP:number" }
+Number Meter_Total_Active_Power_heat_pump   "ТЕРМОПОМПА [% d W]"            <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave102:total_active_power:aP:number" }
 Number Meter_Active_Power_L1_heat_pump      "Watts      [% d W]"            <electric_meter>                            { channel="modbus:data:energy_metters_slave102:active_power_by_phase:aP_L1:number" }
 Number Meter_Active_Power_L2_heat_pump      "Watts      [% d W]"            <electric_meter>                            { channel="modbus:data:energy_metters_slave102:active_power_by_phase:aP_L2:number" }
 Number Meter_Active_Power_L3_heat_pump      "Watts      [% d W]"            <electric_meter>                            { channel="modbus:data:energy_metters_slave102:active_power_by_phase:aP_L3:number" }
-Number Meter_Active_Hz_heat_pump            "Hz   [% .2f Hz]"               <energy>                                    { channel="modbus:data:energy_metters_slave102:Hz:Hz:number" }
+Number Meter_Hz_heat_pump            "Hz   [% .2f Hz]"               <energy>                                    { channel="modbus:data:energy_metters_slave102:Hz:Hz:number" }
 // Number Meter_Reactive_whell_pump_meter       "Instantaneous reactive power [% d var]"        <energy>                                { channel="modbus:data:energy_metters_slave105:reactive_power:rP:number" }
 // Number Meter_Apparent_whell_pump_meter       "Instantaneous apparent power [% d VA]"         <energy>                                { channel="modbus:data:energy_metters_slave105:apparent_power:aP:number" }
 // Number Meter_Power_factor_whell_pump_meter   "Power_factor   [%.2f]"                         <energy>                                { channel="modbus:data:energy_metters_slave105:power_factor:Pf:number" }
-Number Meter_Total_KWh_heat_pump            "Total KWh   [%.2f KWh]"        <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave102:total_active_energy:aE:number" }
+Number Meter_Total_KWh_heat_pump            "ТЕРМОПОМПА  [%.2f KWh]"        <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave102:total_active_energy:aE:number" }
 Number Meter_Total_KWh_L1_heat_pump         "Total KWh   [%.2f KWh]"        <electric_meter>                            { channel="modbus:data:energy_metters_slave102:active_energy_by_phase:aE_L1:number" }
 Number Meter_Total_KWh_L2_heat_pump         "Total KWh   [%.2f KWh]"        <electric_meter>                            { channel="modbus:data:energy_metters_slave102:active_energy_by_phase:aE_L2:number" }
 Number Meter_Total_KWh_L3_heat_pump         "Total KWh   [%.2f KWh]"        <electric_meter>                            { channel="modbus:data:energy_metters_slave102:active_energy_by_phase:aE_L3:number" }
@@ -38,16 +35,16 @@ Number Meter_Total_KWh_L3_heat_pump         "Total KWh   [%.2f KWh]"        <ele
 
 
 
-
+// НАГРЕВАТЕЛ БОЙЛЕР
 // Number: ElectricPotential OU_V "Voltage [% .2f V]" <line> (OU_Counters, counters) {channel = "modbus: data: localSerial: volt: V: number"}
 Number Meter_Voltage_water_heater           "Voltage  [% .2f V]"                            <energy>                                    { channel="modbus:data:energy_metters_slave103:volt:V:number" }
 Number Meter_Ampers_water_heater            "Ampers   [% .2f A]"                            <energy>                                    { channel="modbus:data:energy_metters_slave103:ampers:A:number" }
-Number Meter_Power_water_heater             "103 Watts   [% d W]"                           <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave103:power:P:number" }
+Number Meter_Power_water_heater             "НАГРЕВАТЕЛ БОЙЛЕР   [% d W]"                   <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave103:power:P:number" }
 Number Meter_Hz_water_heater                "Hz   [% .2f Hz]"                               <energy>                                    { channel="modbus:data:energy_metters_slave103:Hz:Hz:number" }
 Number Meter_Reactive_power_water_heater    "Instantaneous reactive power [% d var]"        <energy>                                    { channel="modbus:data:energy_metters_slave103:reactive_power:rP:number" }
 Number Meter_Apparent_power_water_heater    "Instantaneous apparent power [% d VA]"         <energy>                                    { channel="modbus:data:energy_metters_slave103:apparent_power:aP:number" }
 Number Meter_Power_factor_water_heater      "Power_factor   [%.2f]"                         <energy>                                    { channel="modbus:data:energy_metters_slave103:power_factor:Pf:number" }
-Number Meter_TotalKWh_water_heater          "totalkwh   [%.2f kWh]"                         <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave103:totalkwh:totalkwh:number" }
+Number Meter_TotalKWh_water_heater          "НАГРЕВАТЕЛ БОЙЛЕР   [%.2f kWh]"                <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave103:totalkwh:totalkwh:number" }
 Number Meter_TotalKWhT1_water_heater        "totalkwhT1   [%.2f kWh]"                       <electric_meter>                            { channel="modbus:data:energy_metters_slave103:totalkwh:totalkwhT1:number" }
 Number Meter_TotalKWhT2_water_heater        "totalkwhT2   [%.2f kWh]"                       <electric_meter>                            { channel="modbus:data:energy_metters_slave103:totalkwh:totalkwhT2:number" }
 Number Meter_TotalKWhT3_water_heater        "totalkwhT3   [%.2f kWh]"                       <electric_meter>                            { channel="modbus:data:energy_metters_slave103:totalkwh:totalkwhT3:number" }
@@ -62,15 +59,15 @@ Number Meter_TotalkvarhT4_water_heater      "totalkvarhT4   [%.2f kvar]"        
 Number TotalCostWaterHeater "Total cost in Lev [%.2f лева]" <bill> 
 
 
-
+//РЕКУПЕРАТОР
 Number Meter_Voltage_recuperator        "Voltage    [% .2f V]"                          <energy>                                    { channel="modbus:data:energy_metters_slave104:volt:V:number" }
 Number Meter_Ampers_recuperator         "Ampers     [% .2f A]"                          <energy>                                    { channel="modbus:data:energy_metters_slave104:ampers:A:number" }
-Number Meter_Power_recuperator          "104 Watts      [% d W]"                        <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave104:power:P:number" }
+Number Meter_Power_recuperator          "РЕКУПЕРАТОР    [% d W]"                        <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave104:power:P:number" }
 Number Meter_Hz_recuperator             "Hz   [% .2f Hz]"                               <energy>                                    { channel="modbus:data:energy_metters_slave104:Hz:Hz:number" }
 Number Meter_Reactive_recuperator       "Instantaneous reactive power [% d var]"        <energy>                                    { channel="modbus:data:energy_metters_slave104:reactive_power:rP:number" }
 Number Meter_Apparent_recuperator       "Instantaneous apparent power [% d VA]"         <energy>                                    { channel="modbus:data:energy_metters_slave104:apparent_power:aP:number" }
 Number Meter_Power_factor_recuperator   "Power_factor   [%.2f]"                         <energy>                                    { channel="modbus:data:energy_metters_slave104:power_factor:Pf:number" }
-Number Meter_TotalKWh_recuperator       "totalkwh   [%.2f kWh]"                         <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave104:totalkwh:totalkwh:number" }
+Number Meter_TotalKWh_recuperator       "РЕКУПЕРАТОР    [%.2f kWh]"                     <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave104:totalkwh:totalkwh:number" }
 Number Meter_TotalKWhT1_recuperator     "totalkwhT1   [%.2f kWh]"                       <electric_meter>                            { channel="modbus:data:energy_metters_slave104:totalkwh:totalkwhT1:number" }
 Number Meter_TotalKWhT2_recuperator     "totalkwhT2   [%.2f kWh]"                       <electric_meter>                            { channel="modbus:data:energy_metters_slave104:totalkwh:totalkwhT2:number" }
 Number Meter_TotalKWhT3_recuperator     "totalkwhT3   [%.2f kWh]"                       <electric_meter>                            { channel="modbus:data:energy_metters_slave104:totalkwh:totalkwhT3:number" }
@@ -81,15 +78,15 @@ Number Meter_TotalkvarhT2_recuperator   "totalkvarhT2   [%.2f kvar]"            
 Number Meter_TotalkvarhT3_recuperator   "totalkvarhT3   [%.2f kvar]"                    <electric_meter>                            { channel="modbus:data:energy_metters_slave104:totalkvarh:totalkvarhT3:number" }
 Number Meter_TotalkvarhT4_recuperator   "totalkvarhT4   [%.2f kvar]"                    <electric_meter>                            { channel="modbus:data:energy_metters_slave104:totalkvarh:totalkvarhT4:number" }
 
-
+//СОЛАР И РЕЦИРКУЛАЦИОННА ПОМПА ЗА БГВ
 Number Meter_Voltage_soalar_and_hw_recirculation        "Voltage    [% .2f V]"                          <energy>                                    { channel="modbus:data:energy_metters_slave105:volt:V:number" }
 Number Meter_Ampers_soalar_and_hw_recirculation         "Ampers     [% .2f A]"                          <energy>                                    { channel="modbus:data:energy_metters_slave105:ampers:A:number" }
-Number Meter_Power_soalar_and_hw_recirculation          "105 Watts      [% d W]"                        <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave105:power:P:number" }
+Number Meter_Power_soalar_and_hw_recirculation          "СОЛАР И РЕЦИРКУЛАЦИЯ БГВ  [% d W]"             <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave105:power:P:number" }
 Number Meter_Hz_soalar_and_hw_recirculation             "Hz   [% .2f Hz]"                               <energy>                                    { channel="modbus:data:energy_metters_slave105:Hz:Hz:number" }
 Number Meter_Reactive_soalar_and_hw_recirculation       "Instantaneous reactive power [% d var]"        <energy>                                    { channel="modbus:data:energy_metters_slave105:reactive_power:rP:number" }
 Number Meter_Apparent_soalar_and_hw_recirculation       "Instantaneous apparent power [% d VA]"         <energy>                                    { channel="modbus:data:energy_metters_slave105:apparent_power:aP:number" }
 Number Meter_Power_factor_soalar_and_hw_recirculation   "Power_factor   [%.2f]"                         <energy>                                    { channel="modbus:data:energy_metters_slave105:power_factor:Pf:number" }
-Number Meter_TotalKWh_soalar_and_hw_recirculation       "totalkwh   [%.2f kWh]"                         <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwh:number" }
+Number Meter_TotalKWh_soalar_and_hw_recirculation       "СОЛАР И РЕЦИРКУЛАЦИЯ БГВ  [%.2f kWh]"          <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwh:number" }
 Number Meter_TotalKWhT1_soalar_and_hw_recirculation     "totalkwhT1   [%.2f kWh]"                       <electric_meter>                            { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwhT1:number" }
 Number Meter_TotalKWhT2_soalar_and_hw_recirculation     "totalkwhT2   [%.2f kWh]"                       <electric_meter>                            { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwhT2:number" }
 Number Meter_TotalKWhT3_soalar_and_hw_recirculation     "totalkwhT3   [%.2f kWh]"                       <electric_meter>                            { channel="modbus:data:energy_metters_slave105:totalkwh:totalkwhT3:number" }
@@ -100,15 +97,15 @@ Number Meter_TotalkvarhT2_soalar_and_hw_recirculation   "totalkvarhT2   [%.2f kv
 Number Meter_TotalkvarhT3_soalar_and_hw_recirculation   "totalkvarhT3   [%.2f kvar]"                    <electric_meter>                            { channel="modbus:data:energy_metters_slave105:totalkvarh:totalkvarhT3:number" }
 Number Meter_TotalkvarhT4_soalar_and_hw_recirculation   "totalkvarhT4   [%.2f kvar]"                    <electric_meter>                            { channel="modbus:data:energy_metters_slave105:totalkvarh:totalkvarhT4:number" }
 
-
+// СОНДАЖНА ПОМПА 
 Number Meter_Voltage_well_pump        "Voltage    [% .2f V]"                        <energy>                                    { channel="modbus:data:energy_metters_slave106:volt:V:number" }
 Number Meter_Ampers_well_pump         "Ampers     [% .2f A]"                        <energy>                                    { channel="modbus:data:energy_metters_slave106:ampers:A:number" }
-Number Meter_Power_well_pump          "105 Watts      [% d W]"                      <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave106:power:P:number" }
+Number Meter_Power_well_pump          "СОНДАЖНА ПОМПА [% d W]"                      <electric_meter>    (Gr_HR_ACTIVE_POWER)    { channel="modbus:data:energy_metters_slave106:power:P:number" }
 Number Meter_Hz_well_pump             "Hz   [% .2f Hz]"                             <energy>                                    { channel="modbus:data:energy_metters_slave106:Hz:Hz:number" }
 Number Meter_Reactive_well_pump       "Instantaneous reactive power [% d var]"      <energy>                                    { channel="modbus:data:energy_metters_slave106:reactive_power:rP:number" }
 Number Meter_Apparent_well_pump       "Instantaneous apparent power [% d VA]"       <energy>                                    { channel="modbus:data:energy_metters_slave106:apparent_power:aP:number" }
 Number Meter_Power_factor_well_pump   "Power_factor   [%.2f]"                       <energy>                                    { channel="modbus:data:energy_metters_slave106:power_factor:Pf:number" }
-Number Meter_TotalKWh_well_pump       "totalkwh   [%.2f kWh]"                       <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave106:totalkwh:totalkwh:number" }
+Number Meter_TotalKWh_well_pump       "СОНДАЖНА ПОМПА [%.2f kWh]"                   <electric_meter>    (Gr_HR_Total_KWh)       { channel="modbus:data:energy_metters_slave106:totalkwh:totalkwh:number" }
 Number Meter_TotalKWhT1_well_pump     "totalkwhT1   [%.2f kWh]"                     <electric_meter>                            { channel="modbus:data:energy_metters_slave106:totalkwh:totalkwhT1:number" }
 Number Meter_TotalKWhT2_well_pump     "totalkwhT2   [%.2f kWh]"                     <electric_meter>                            { channel="modbus:data:energy_metters_slave106:totalkwh:totalkwhT2:number" }
 Number Meter_TotalKWhT3_well_pump     "totalkwhT3   [%.2f kWh]"                     <electric_meter>                            { channel="modbus:data:energy_metters_slave106:totalkwh:totalkwhT3:number" }

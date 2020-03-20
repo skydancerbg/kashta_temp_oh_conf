@@ -7,6 +7,12 @@ Group Gr_Persist_State_On_Statup
 //// SECURITY SYSTEM
 // !!! All Group items for the security system are located in security_system.rules file
 
+//// ENERGY METERS
+Group:Number:SUM     Gr_HR_ACTIVE_POWER   "МОМЕНТНА КОНСУМАЦИЯ ОВИ И БГВ (ОБЩО)   [% d W]" <electric_meter>
+Group:Number:SUM     Gr_HR_Total_KWh   "ОВИ И БГВ - КОНСУМИРАНИ ДО МОМЕНТА:  [%.2f KWh]" <electric_meter>
+
+
+
 //// LIGHTNING
 
 Group:Switch:OR(ON, OFF)    gAllLights   "Осветление всички [%d ВКЛЮЧЕН(И)]"
@@ -64,34 +70,10 @@ Group gKitchenConterLightControll
 // // // // // ОТОПЛЕНИЕ
 // // // // // // // 
 
-Group Gr_GF_OF // Home Office
-Group:Number:AVG GF_OF_Temperature "Home Office Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
-
 Group Group_Heating
 Group Group_SetPoint
 Group Group_SetPoint_Command
 Group Group_Room_Temperature
-
-// // // // // STEFANS BEDROOM HEATING // // // // // // // // 
-Group Gr_AT_BR // Bedroom - Stefan's
-Group:Number:AVG Gr_AT_BR_Temperature "Stefans Bedroom Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
-
-Group Group_AT_Heating // APARTMENT HEATING GROUP
-
-Group Group_AT_BR_SetPoint
-Group Group_AT_BR_SetPoint_Command
-Group Group_AT_BR_Room_Temperature
-
-// // // // // STEFANS BEDROOM HEATING // // // // // // // // 
-Group Gr_AT_KN // Bedroom - Stefan's
-Group:Number:AVG Gr_AT_KN_Temperature "Kitchen Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
-
-Group Group_AT_KN_SetPoint
-Group Group_AT_KN_SetPoint_Command
-Group Group_AT_KN_Room_Temperature
-
-
-
 
 // // LINKS TO SITEMAPS!!!!!!
 String admin_site  "http://192.168.1.201:8080/basicui/app?sitemap=administration"

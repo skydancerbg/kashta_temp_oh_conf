@@ -1,0 +1,63 @@
+// https://community.openhab.org/t/multi-state-switches/10939/6
+Number HeatingCoolingSwitch "[MAP(heatingcooling_states.map):%s]" (Gr_Persist_State_On_Statup)
+// Number HeatingCoolingSwitch "СЪСТОЯНИЕ: [MAP(heatingcooling_states.map):%s]"
+
+
+// Number Livingroom_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_Livingroom)
+// Number GuestBedroom_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_GuestBedroom)
+// Number MasterBedroom_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_MasterBedroom)
+// Number Bathroom_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_Bathroom)
+
+
+// // // // // WHOLE HOUSE UNDERFLOOR HEATING TEST // // // // // // // // 
+
+Group Gr_HS_UF_ALL // Home Office
+Group:Number:AVG Gr_HS_AVERAGE_HEATING_COOLING_Temperature "Home Office Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
+Group:Switch:OR(ON, OFF)  Gr_HS_UF_ACTUATORS   "ВСИЧКИ РЕЛЕТА ПОДОВО  [%d ВКЛЮЧЕН(И)]"
+
+Switch HOUSE_UF_All_Heating_Enable "Under floor heating all" (Gr_Persist_State_On_Statup) [ "Switchable" ] 
+Number HOUSE_UF_All_Heating_Setpoint (Gr_Persist_State_On_Statup) //,Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
+Switch HOUSE_UF_All_Heating 
+
+
+// // // // // HOME OFFICE HEATING/COOLING // // // // // // // // 
+
+Group Gr_GF_OF // Home Office
+Group:Number:AVG GF_OF_Temperature "Home Office Average Temperature [%.1f C]" <temperature> (Group_Room_Temperature)
+
+Switch GF_OF_Heating_Enable "Home office heating" (Gr_Persist_State_On_Statup) [ "Switchable" ] 
+Number GF_OF_Heating_Setpoint (Gr_Persist_State_On_Statup) //,Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
+Switch GF_OF_Heating 
+
+// Switch Heating_ON_OFF (Gr_ALL_POWER)
+
+
+// Number GF_OF_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_Home_Office)
+// Switch GF_OF_Heating 
+
+
+// // // // APARTMENT // // // // 
+
+// Switch Heating_AT_ON_OFF  //(gAllPower)
+// Switch Cooling_AT_ON_OFF  //(gAllPower)
+
+// // // // APARTMENT STEFANS BEDROOM // // // // 
+
+
+// Number AT_BR_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_AT_BR)
+// Switch AT_BR_Heating_Status
+// Switch AT_BR_Heating_Enable
+
+// // !!!!!!!!!!!
+// Make switch with 1 and 0 states in order to chart the switch in Grafana
+// Switch GF_Sonoff_TH16_2_Grafana_0_1_Power  (GF_Sonoff_TH16_2, gAllPower)      // ???? Dont need this - REMOVE
+
+
+// // // // APARTMENT KITCEHN DINING // // // // 
+
+
+// Number AT_KN_Heating_Setpoint (Group_SetPoint,Group_SetPoint_Command,Group_AT_KN)
+// Switch AT_KN_Heating_Status
+// Switch AT_KN_Heating_Enable
+
+

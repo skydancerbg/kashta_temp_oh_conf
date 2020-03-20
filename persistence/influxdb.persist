@@ -1,0 +1,53 @@
+// Cron Expression Generator & Explainer
+// https://www.freeformatter.com/cron-expression-generator-quartz.html
+
+Strategies {
+every30seconds : "0/30 0 0 ? * * *"
+everyMinute : "0 * * * * ?"
+everyHour : "0 0 * * * ?"
+everyDay : "0 0 0 * * ?"
+every2Minutes : "0 */2 * ? * *"
+every1Minutes : "0 */1 * ? * *"
+every5Minutes : "0 0/5 * * * ?"
+//If no strategy is defined, everyChange will be used.
+default = everyChange
+}
+
+Items {
+HeatingCoolingSwitch, GF_OF_Heating_Setpoint : strategy = everyChange, restoreOnStartup
+Gr_HR_ACTIVE_POWER : strategy = everyChange, every30seconds
+Gr_HR_ACTIVE_POWER*, Gr_Temperature_measurments* : strategy = everyChange, every1Minutes
+
+// Gr_Persist_State_On_Statup*, gAllBatteryLevel* , gAllPower*, Gr_ALL_POWER*, Alarm_Arm_Disarm_Switch, Heating_ON_OFF, Heating_AT_ON_OFF, GF_OF_Heating_Setpoint, AT_BR_Heating_Setpoint, AT_KN_Heating_Setpoint : strategy = everyChange, restoreOnStartup
+// Gr_Temperature_measurments*, Gr_Sequrity_System_Motion*, Pir_4_Motion, Pir_5_Motion, Gr_AT_KN_Temperature, GF_Sonoff_TH16_1_Power, GF_Sonoff_TH16_2_Power, GF_Sonoff_TH16_2_Grafana_0_1_Power, GF_Sonoff_S20_2_Power, AT_BR_Heating_Status, AT_KN_Heating_Status, MIGW_XA_THP_Temperature_3, MIGW_XA_THP_Temperature_4 : strategy = everyChange, every1Minutes
+// StefanBedNightLight_Rule_Switch, Corridor_NightLight_Rule_Switch, HeatingCoolingSwitch : strategy = everyChange, restoreOnStartup
+// // Gr_ALL_POWER* : everyChange, restoreOnStartup 
+// gAllPower* : everyChange, restoreOnStartup
+}
+
+////////////////EXAMPLE/////////////////////////////////////////
+// // FROM: https://www.smarthomeblog.net/openhab-persistence-tutorial/
+///////////////////////////////////////////////////////////////
+/////////// Strategies 
+///////////   { 
+///////////   //The value of the item is persisted every hour. 
+///////////   everyHour : "0 0 * * * ?"
+///////////   //Every day at midnight, an even is fired to store the value 
+///////////   everyDayAtMidnight : "0 0 0 * * ?"
+///////////   //Every Tuesday at 5PM...I can't really find a legitimate use for this...
+///////////   everyTuesdayAtFive : "0 0 0,17 ? * TUE *" 
+///////////   //If no strategy is defined, everyChange will be used.
+///////////   default = everyChange 
+///////////   }
+///////// 
+/////////// Items 
+///////////   {
+///////////   //Persist the value for all the members of the group gTemperatureSensors using the default strategy
+///////////   gTemperatureSensors*
+///////////   // Persist the value for all the members of the group gLivingroomLights every time they change and restore them after a restart
+///////////   gLivingroomLights* : everyChange, restoreOnStartup
+///////////   //Persist the value of the group itself
+///////////   gLivingroomLights : everyUpdate, restoreOnStartup
+///////////   //store the value of the temperature every Tuesday at 5PM...So useful...who wouldn't wanna know that?
+///////////   mqtt_outside_temperature : everyTuesdayAtFive
+///////////   }
