@@ -43,6 +43,12 @@ Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secu
         Type switch : power30   "Power30"                            [ stateTopic="stat/ardu_mega_heating_ctrl_1/POWER30", commandTopic="cmnd/ardu_mega_heating_ctrl_1/POWER30" ]
         Type switch : power31   "Power31"                            [ stateTopic="stat/ardu_mega_heating_ctrl_1/POWER31", commandTopic="cmnd/ardu_mega_heating_ctrl_1/POWER31" ]
         Type switch : power32   "Power32"                            [ stateTopic="stat/ardu_mega_heating_ctrl_1/POWER32", commandTopic="cmnd/ardu_mega_heating_ctrl_1/POWER32" ]
+        Type switch : power33   "Power33"                            [ stateTopic="stat/ardu_mega_heating_ctrl_1/POWER33", commandTopic="cmnd/ardu_mega_heating_ctrl_1/POWER33" ]
+        Type switch : power34   "Power34"                            [ stateTopic="stat/ardu_mega_heating_ctrl_1/POWER34", commandTopic="cmnd/ardu_mega_heating_ctrl_1/POWER34" ]
+        Type switch : power35   "Power35"                            [ stateTopic="stat/ardu_mega_heating_ctrl_1/POWER35", commandTopic="cmnd/ardu_mega_heating_ctrl_1/POWER35" ]
+        Type switch : power36   "Power36"                            [ stateTopic="stat/ardu_mega_heating_ctrl_1/POWER36", commandTopic="cmnd/ardu_mega_heating_ctrl_1/POWER36" ]
+        Type switch : power37   "Power37"                            [ stateTopic="stat/ardu_mega_heating_ctrl_1/POWER37", commandTopic="cmnd/ardu_mega_heating_ctrl_1/POWER37" ]
+        Type switch : power38   "Power38"                            [ stateTopic="stat/ardu_mega_heating_ctrl_1/POWER38", commandTopic="cmnd/ardu_mega_heating_ctrl_1/POWER38" ]
 
     }
 
@@ -94,7 +100,13 @@ Bridge mqtt:broker:MyMQTTthing "MyMQTTthing" [ host="127.0.0.1", port=1883, secu
         Type number : rssi      "WiFi Signal Strength"      [ stateTopic="tele/sonoff_th16_6/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
     }
 
-
+    Thing topic sonoff_th16_2 "SonoffTH16 2 DS18B20 hOT WATER TANK TOP T/H" @ "Living Room" {
+    Channels:
+        Type string : reachable     "Reachable"             [ stateTopic="tele/sonoff_th16_2/LWT" ]
+        Type switch : power         "Power"                 [ stateTopic="stat/sonoff_th16_2/POWER", commandTopic="cmnd/sonoff_th16_2/POWER" ]
+        Type number : temperature   "Temperature"           [ stateTopic="tele/sonoff_th16_2/SENSOR", transformationPattern="JSONPATH:$.DS18B20.Temperature" ]
+        Type number : rssi      "WiFi Signal Strength"      [ stateTopic="tele/sonoff_th16_2/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+    }
 
 // // SONOFF POW
     

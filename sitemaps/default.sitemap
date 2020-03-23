@@ -9,6 +9,10 @@ sitemap default label="КЪЩАТА НА ДЕСИ И СТЕФАН" {
         Frame label="ТЕМПЕРАТУРИ:" icon="temperature" {
                 Group item=Gr_House_Outside_Temperature label="ВЪНШНА (средно измерена) [%.1f °C]" icon="temperature"
                 Group item=Gr_House_Inside_Temperature label="ВЪТРЕШНА (средно измерена) [%.1f °C]" icon="temperature"
+                Text item= GF_Sonoff_TH16_2_Temperature label="ТЕМПЕРАТУРА БОЙЛЕР [%.1f °C]" icon="temperature"
+                Text item= GF_Sonoff_TH16_2_Reachable   label="ДАТЧИК БОЙЛЕР: [%s]" icon="presence"
+                // Group item=GF_Sonoff_TH16_2
+
 
                 // Group item=Gr_House_Outside_Temperature label="Средно измерена външна температура: [%.1f °C]" icon="temperature"
                 // Group item=Gr_House_Inside_Temperature label="Средно измерена вътрешна температура: [%.1f °C]" icon="temperature"
